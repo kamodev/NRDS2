@@ -27,6 +27,18 @@
   <section class="site-copyright">
     <p>&copy; <?php echo date('Y'); ?> National Readiness &amp; Defense. All rights reserved.</p>
   </section>
+  <?php if ( has_nav_menu( 'footer' ) || is_active_sidebar( 'footer-secondary' ) ) : ?>
+  <section class="footer-secondary">
+    <?php if ( has_nav_menu( 'footer' ) ) : ?>
+      <?php get_template_part( 'inc/footer-menu' ); ?>
+    <?php endif; ?>
+    <?php if ( is_active_sidebar( 'footer-secondary' ) ) : ?>
+      <div class="footer-secondary-widgets">
+        <?php dynamic_sidebar( 'footer-secondary' ); ?>
+      </div>
+    <?php endif; ?>
+  </section>
+  <?php endif; ?>
 </footer>
 </div> <!-- .site-container -->
 <?php wp_footer(); ?>
