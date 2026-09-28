@@ -1,1 +1,50 @@
 /* All global footer styling */
+
+/* Secondary Footer */
+footer .footer-secondary {
+    align-items: center;
+    background: #222;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.85em;
+    gap: 10px 20px;
+    justify-content: space-between;
+    margin: 10px 0 -10px; /* Offset the footer's bottom padding so the bar sits flush */
+    padding: 10px 20px;
+}
+
+footer .footer-secondary .footer-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer .footer-secondary .footer-menu a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+footer .footer-secondary .footer-menu a:hover,
+footer .footer-secondary .footer-menu .current-menu-item a {
+    color: #fff;
+}
+
+footer .footer-secondary-widgets {
+    display: flex;
+    gap: 15px;
+}
+
+footer .footer-secondary .widget-title {
+    font-size: 1em;
+    margin: 0 0 5px;
+}
+
+@media (max-width: 600px) {
+    footer .footer-secondary {
+        flex-direction: column;
+        text-align: center;
+    }
+}

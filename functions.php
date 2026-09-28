@@ -105,7 +105,20 @@ function nrds_theme_sidebars() {
         'after_widget'  => '</div>',
         'before_title'  => '<h2 class="widget-title">',
         'after_title'   => '</h2>',
-    )); 
+    ));
+
+    // Register a secondary footer widget area
+    // This is shown in the second footer bar below the main footer,
+    // alongside the footer menu. Useful for social links, contact info, etc.
+    register_sidebar(array(
+        'name'          => __('Secondary Footer', 'nrds-theme'),
+        'id'            => 'footer-secondary',
+        'description'   => __('Widgets in this area will be shown in the second footer bar.', 'nrds-theme'),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ));
 
     // Register a header widget area
     // This is useful for themes that want to display widgets in the header area.
