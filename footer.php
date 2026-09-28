@@ -5,25 +5,7 @@
   <?php endif; ?>
 </div>
 <footer id="colophon" class="site-footer" role="contentinfo">
-  <?php if ( is_active_sidebar( 'footer-widget-1' ) || is_active_sidebar( 'footer-widget-2' ) || is_active_sidebar( 'footer-widget-3' )) : ?>
-  <section class="footer-widgets-area">
-    <?php if ( is_active_sidebar( 'footer-widget-1' ) ) : ?>
-      <div class="footer-widget-column">
-        <?php dynamic_sidebar( 'footer-widget-1' ); ?>
-      </div>
-    <?php endif; ?>
-    <?php if ( is_active_sidebar( 'footer-widget-2' ) ) : ?>
-      <div class="footer-widget-column">
-        <?php dynamic_sidebar( 'footer-widget-2' ); ?>
-      </div>
-    <?php endif; ?>
-    <?php if ( is_active_sidebar( 'footer-widget-3' ) ) : ?>
-      <div class="footer-widget-column">
-        <?php dynamic_sidebar( 'footer-widget-3' ); ?>
-      </div>
-    <?php endif; ?>
-    </section>
-  <?php endif; ?>
+  <?php get_template_part( 'inc/footer-columns' ); ?>
   <?php if ( has_nav_menu( 'footer' ) || is_active_sidebar( 'footer-secondary' ) ) : ?>
   <section class="footer-secondary">
     <?php if ( has_nav_menu( 'footer' ) ) : ?>
