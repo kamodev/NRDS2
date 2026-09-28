@@ -1,0 +1,83 @@
+/* ==========================================================================
+   NRDS buttons — knife-edge (blade-cut) style
+   Standalone copy of the button rules from the NRDS theme (assets/css/main.css v1.1.0).
+   Uses Oswald for the label: load it from Google Fonts or change --font-head.
+   ========================================================================== */
+
+:root {
+	--navy: #0b1f3a;
+	--navy-dark: #061326;
+	--navy-light: #16325a;
+	--orange: #f26a1b;
+	--orange-dark: #d4550c;
+	--white: #fff;
+	--font-head: "Oswald", "Arial Narrow", Arial, sans-serif;
+}
+
+/* ---------- Base button ---------- */
+.btn, .button, button[type="submit"], input[type="submit"], .wp-block-button__link, .wpcf7-submit {
+	display: inline-block;
+	font-family: var(--font-head);
+	font-size: 1rem;
+	font-weight: 500;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	padding: 14px 32px;
+	border: 2px solid var(--orange);
+	background: var(--orange);
+	color: var(--white);
+	cursor: pointer;
+	line-height: 1.2;
+	text-align: center;
+	text-decoration: none;
+	transition: background .2s, color .2s, border-color .2s, transform .2s;
+}
+.btn:hover, .button:hover, button[type="submit"]:hover, input[type="submit"]:hover, .wp-block-button__link:hover, .wpcf7-submit:hover {
+	background: var(--orange-dark);
+	border-color: var(--orange-dark);
+	color: var(--white);
+	transform: translateY(-2px);
+}
+.btn:focus-visible, .button:focus-visible, button[type="submit"]:focus-visible, input[type="submit"]:focus-visible {
+	outline: 3px solid var(--orange);
+	outline-offset: 2px;
+}
+
+/* ---------- Variants ---------- */
+/* outline: for dark backgrounds (e.g. the hero) */
+.btn-outline { background: transparent; color: var(--white); border-color: var(--white); }
+.btn-outline:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
+
+/* navy: on orange backgrounds, or as a secondary action */
+.btn-navy { background: var(--navy); border-color: var(--navy); }
+.btn-navy:hover { background: var(--navy-light); border-color: var(--navy-light); }
+
+/* small */
+.btn-sm { padding: 10px 20px; font-size: .9rem; }
+
+/* header menu call-to-action (menu item with CSS class "menu-cta") */
+.main-nav .menu-cta a, .main-nav .nav-cta {
+	background: var(--orange);
+	padding: 10px 22px;
+	margin-left: 10px;
+	color: var(--white);
+}
+.main-nav .menu-cta a:hover, .main-nav .nav-cta:hover { background: var(--orange-dark); color: var(--white); }
+
+/* ---------- Knife-edge corners ---------- */
+.btn, .button, button[type="submit"], input[type="submit"], .wp-block-button__link, .wpcf7-submit,
+.elementor-widget-button .elementor-button {
+	border-radius: 0;
+	clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+.btn-sm { clip-path: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px); }
+.main-nav .menu-cta a, .main-nav .nav-cta {
+	border-radius: 0;
+	clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+/* outline buttons keep square corners so their border stays unbroken */
+.btn-outline { border-radius: 0; clip-path: none; }
+
+@media (prefers-reduced-motion: reduce) {
+	.btn, .button, button[type="submit"], input[type="submit"] { transition: none; }
+}
