@@ -1,0 +1,27 @@
+.wp-block-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em; /* Managed via block gap settings */
+  padding-left: 0;
+  list-style: none;
+}
+
+.wp-block-social-link {
+  display: block;
+  border-radius: 9999px; /* Default for pill/rounded styles */
+  transition: transform 0.1s ease;
+}
+
+.wp-block-social-link a {
+  align-items: center;
+  color: var(--nrd-white);
+  display: flex;
+  fill: var(--nrd-white);
+  line-height: 0;
+}
+
+.wp-block-social-link:hover {
+    color: var(--nrd-orange);
+    fill: var(--nrd-orange);
+    transform: scale(1.1);
+}
