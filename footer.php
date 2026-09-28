@@ -24,9 +24,6 @@
     <?php endif; ?>
     </section>
   <?php endif; ?>
-  <section class="site-copyright">
-    <p>&copy; <?php echo date('Y'); ?> National Readiness &amp; Defense. All rights reserved.</p>
-  </section>
   <?php if ( has_nav_menu( 'footer' ) || is_active_sidebar( 'footer-secondary' ) ) : ?>
   <section class="footer-secondary">
     <?php if ( has_nav_menu( 'footer' ) ) : ?>
@@ -39,6 +36,9 @@
     <?php endif; ?>
   </section>
   <?php endif; ?>
+  <section class="site-copyright">
+    <p>&copy; <?php echo date('Y'); ?> National Readiness &amp; Defense. All rights reserved.</p>
+  </section>
 </footer>
 </div> <!-- .site-container -->
 <?php wp_footer(); ?>

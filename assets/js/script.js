@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-    var header = $('#site-header'); // Replace #site-header with your header's ID or class
+    var header = $('.nrd-header');
     var stickyClass = 'sticky-header';
     var headerOffset = header.offset().top;
 

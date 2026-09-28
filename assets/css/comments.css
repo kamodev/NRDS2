@@ -1,0 +1,23 @@
+/* Comments stylinng */
+.commentlist {
+    list-style: none;
+    padding: 0;
+}
+
+.commentlist li {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.commentlist li .comment-author {
+    font-weight: bold;
+}
+
+.commentlist li .comment-meta {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.commentlist li .comment-content {
+    margin-top: 5px;
+}

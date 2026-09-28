@@ -11,15 +11,16 @@
 </head>
 <body <?php body_class(); ?>>
     <div class="site-container">
-        <header id="site-header" role="banner">
-            <div class="site-branding">
-                <?php if ( has_custom_logo() ): ?>
-                    <?php the_custom_logo(); ?>
-                <?php else: ?>
-                    <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
-                <?php endif; ?>            
-            </div>
-            <div>
+        <div class="nrd-topbar"></div>
+        <header class="nrd-header" role="banner">
+            <div class="nrd-container nrd-header__inner">
+                <div class="site-branding">
+                    <?php if ( has_custom_logo() ): ?>
+                        <?php the_custom_logo(); ?>
+                    <?php else: ?>
+                        <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
+                    <?php endif; ?>            
+                </div>
                 <?php require_once('inc/primary-menu.php'); ?>
             </div>
         </header>
