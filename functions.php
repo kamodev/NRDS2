@@ -36,6 +36,10 @@ function nrds_theme_setup() {
         'primary' => __('Primary Menu', 'nrds-theme'),
         'header' => __('Header Menu', 'nrds-theme'),
         'footer' => __('Footer Menu', 'nrds-theme'),
+        'footer-column-1' => __('Footer Column 1', 'nrds-theme'),
+        'footer-column-2' => __('Footer Column 2', 'nrds-theme'),
+        'footer-column-3' => __('Footer Column 3', 'nrds-theme'),
+        'footer-column-4' => __('Footer Column 4', 'nrds-theme'),
     ));
 }
 
@@ -62,50 +66,23 @@ function nrds_theme_sidebars() {
         'after_title'   => '</h2>',
     ));
 
-    // Register a footer widget area 1
-    // This is useful for themes that want to display widgets in the footer area.
-    // It can be used for displaying additional information, links, or advertisements.
-    // The footer widget area can be styled separately from the main content.
-    // It is a common practice to have multiple footer widget areas.
-    register_sidebar(array(
-        'name'          => __('Footer Widget Area 1', 'nrds-theme'),
-        'id'            => 'footer-widget-1',
-        'description'   => __('Widgets in this area will be shown in the footer.', 'nrds-theme'),
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="widget-title">',
-        'after_title'   => '</h2>',
-    ));
-
-    // Register a footer widget area 1
-    // This is useful for themes that want to display widgets in the footer area.
-    // It can be used for displaying additional information, links, or advertisements.
-    // The footer widget area can be styled separately from the main content.
-    // It is a common practice to have multiple footer widget areas.
-    register_sidebar(array(
-        'name'          => __('Footer Widget Area 2', 'nrds-theme'),
-        'id'            => 'footer-widget-2',
-        'description'   => __('Widgets in this area will be shown in the footer.', 'nrds-theme'),
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="widget-title">',
-        'after_title'   => '</h2>',
-    ));
-    
-    // Register a footer widget area 3
-    // This is useful for themes that want to display widgets in the footer area.
-    // It can be used for displaying additional information, links, or advertisements.
-    // The footer widget area can be styled separately from the main content.
-    // It is a common practice to have multiple footer widget areas.
-    register_sidebar(array(
-        'name'          => __('Footer Widget Area 3', 'nrds-theme'),
-        'id'            => 'footer-widget-3',
-        'description'   => __('Widgets in this area will be shown in the footer.', 'nrds-theme'),
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="widget-title">',
-        'after_title'   => '</h2>',
-    ));
+    // Register the four footer column widget areas
+    // Each column shows its "Footer Column N" menu (if assigned) followed by
+    // these widgets, so a column can hold menus, text, custom HTML, blocks, etc.
+    // The IDs stay footer-widget-1..3 so widgets already placed are kept.
+    for ($i = 1; $i <= 4; $i++) {
+        register_sidebar(array(
+            /* translators: %d: footer column number */
+            'name'          => sprintf(__('Footer Column %d', 'nrds-theme'), $i),
+            'id'            => 'footer-widget-' . $i,
+            /* translators: %1$d: footer column number */
+            'description'   => sprintf(__('Widgets in this area will be shown in footer column %1$d, below the Footer Column %1$d menu.', 'nrds-theme'), $i),
+            'before_widget' => '<div id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        ));
+    }
 
     // Register a secondary footer widget area
     // This is shown in the second footer bar below the main footer,

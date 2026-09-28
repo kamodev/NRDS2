@@ -411,17 +411,7 @@ footer {
     width: 100%;
 }
 
-/* Footer Widgets Area */
-footer .footer-widgets-area {
-    display: flex;
-    margin-bottom: 20px;
-    padding: 20px;
-}
-
-footer .footer-widget-column {
-    flex-basis: 33.33%;
-    margin: 0 10px;
-}
+/* Footer columns are styled in assets/css/footer.css */
 
 /* Site Copyright */
 footer .site-copyright {

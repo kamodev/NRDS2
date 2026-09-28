@@ -1,5 +1,92 @@
 /* All global footer styling */
 
+/* Footer Columns (up to 4: menus, widgets, hooked content) */
+footer .footer-widgets-area {
+    box-sizing: border-box;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0 auto 20px;
+    max-width: var(--content-max-width);
+    padding: 20px;
+    text-align: left;
+}
+
+/* Fewer active columns share the full width */
+footer .footer-widgets-area.footer-columns-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+footer .footer-widgets-area.footer-columns-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+footer .footer-widgets-area.footer-columns-1 { grid-template-columns: minmax(0, 1fr); }
+
+footer .footer-widget-column {
+    min-width: 0; /* Let long words, images and embeds shrink with the column */
+}
+
+footer .footer-widget-column > * + * {
+    margin-top: 20px;
+}
+
+footer .footer-widget-column .widget-title {
+    font-size: 1.1em;
+    margin: 0 0 10px;
+}
+
+footer .footer-widget-column img,
+footer .footer-widget-column iframe {
+    height: auto;
+    max-width: 100%;
+}
+
+/* Menus in columns: from a menu location or a Navigation Menu widget */
+footer .footer-widget-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer .footer-widget-column li {
+    margin-bottom: 8px;
+}
+
+footer .footer-widget-column ul ul {
+    margin-top: 8px;
+    padding-left: 15px;
+}
+
+footer .footer-widget-column a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+footer .footer-widget-column a:hover,
+footer .footer-widget-column a:focus {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Override the global current-page highlight inside the footer */
+footer .footer-widget-column .current-menu-item > a,
+footer .footer-widget-column .current_page_item > a {
+    border-bottom: 0;
+    color: #fff;
+    font-style: normal;
+    text-decoration: none;
+}
+
+@media (max-width: 900px) {
+    footer .footer-widgets-area.footer-columns-4,
+    footer .footer-widgets-area.footer-columns-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    footer .footer-widgets-area.footer-columns-4,
+    footer .footer-widgets-area.footer-columns-3,
+    footer .footer-widgets-area.footer-columns-2 {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
 /* Secondary Footer */
 footer .footer-secondary {
     align-items: center;
