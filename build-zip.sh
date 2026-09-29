@@ -14,7 +14,7 @@ THEME_SLUG="$(basename "$THEME_DIR")"
 OUT_DIR="${1:-$HOME/Downloads}"
 
 # Directories and files left out of the zip
-EXCLUDE_DIRS=".git .claude nrds-site"
+EXCLUDE_DIRS=".git .claude nrds-site prototype"
 EXCLUDE_FILES=".DS_Store .gitignore build-zip.sh"
 
 cd "$THEME_DIR"
