@@ -130,8 +130,6 @@ body {
     width: 100%;
 } */
 
-
-
 .sticky-header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     left: 0;
@@ -314,40 +312,6 @@ nav a:hover {
     border-radius: var(--card-radius) var(--card-radius) 0 0;
     box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
 }
-/* Responsive adjustments for mobile/tablet */
-@media (max-width: 900px) {
-    #site-content {
-        flex-direction: column;
-        gap: 1.5rem;
-        padding: 1.5rem 0.5rem;
-    }
-    #left-sidebar.sidebar,
-    #right-sidebar.sidebar {
-        max-width: 100vw;
-        width: 100%;
-        min-width: 0;
-        margin-bottom: 1.5rem;
-        border-radius: var(--card-radius);
-        /* box-shadow removed for non-fullscreen */
-    }
-    #main {
-        padding: 1.5rem 0.5rem;
-        min-height: 40vh;
-    }
-}
-@media (max-width: 600px) {
-    #site-content {
-        padding: 0.5rem 0.25rem;
-        gap: 1rem;
-    }
-    #main {
-        padding: 1rem 0.25rem;
-    }
-    #colophon {
-        padding: 1.2rem 0 0.5rem 0;
-        margin-top: 1.2rem;
-    }
-}
 
 /* Site footer styles */
 footer {
@@ -360,12 +324,14 @@ footer {
 
 /* Footer columns are styled in assets/css/footer.css */
 
-/* Site Copyright */
-footer .site-copyright {
-    flex-basis: 100%;
-    font-size: 0.9em;
-    margin-top: 10px;
-}
+/* .current_page_item a,
+.current-menu-item a {
+    color: var(--primary-color);
+    font-weight: bold; 
+    font-style: italic; 
+    text-decoration: underline; 
+    border-bottom: 2px solid #f00; 
+} */
 
 /* All the post related styling */
 .post > header {
