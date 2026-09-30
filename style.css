@@ -13,7 +13,7 @@ Tags: white, two-columns, fullwidth-template, custom-colors, custom-menu, custom
 @import "assets/css/footer.css";
 @import "assets/css/navigation.css";
 @import "assets/css/comments.css";
-
+@import "assets/css/social-icons.css";
 /* 
 @import "assets/css/sidebar.css";
 @import "assets/css/content.css";
@@ -42,31 +42,30 @@ Tags: white, two-columns, fullwidth-template, custom-colors, custom-menu, custom
 }
 
 :root {
-  --nrd-navy:        #1d3547;
-  --nrd-navy-dark:   #132634;
-  --nrd-navy-deep:   #0d1b25;
-  --nrd-orange:      #e8641c;
-  --nrd-orange-dark: #c9520f;
-  --nrd-red:         #d62828;
-  --nrd-cream:       #f7f3ee;
-  --nrd-gray-100:    #f4f6f8;
-  --nrd-gray-300:    #d5dce2;
-  --nrd-gray-600:    #5b6b78;
-  --nrd-white:       #ffffff;
-  --nrd-text:        #1d3547;
-  --nrd-black:       #000000;
+    --nrd-navy:        #1d3547;
+    --nrd-navy-dark:   #132634;
+    --nrd-navy-deep:   #0d1b25;
+    --nrd-orange:      #e8641c;
+    --nrd-orange-dark: #c9520f;
+    --nrd-red:         #d62828;
+    --nrd-cream:       #f7f3ee;
+    --nrd-gray-100:    #f4f6f8;
+    --nrd-gray-300:    #d5dce2;
+    --nrd-gray-600:    #5b6b78;
+    --nrd-white:       #ffffff;
+    --nrd-text:        #1d3547;
+    --nrd-black:       #000000;
 
-  --nrd-font-head: "Oswald", "Arial Narrow", sans-serif;
-  --nrd-font-body: "Roboto", Arial, sans-serif;
+    --nrd-font-head: "Oswald", "Arial Narrow", sans-serif;
+    --nrd-font-body: "Roboto", Arial, sans-serif;
 
-  --nrd-max:    1200px;
-  --nrd-gutter: 24px;
-  --nrd-radius: 6px;
-  --nrd-shadow: 0 10px 30px rgba(13, 27, 37, .12);
-}
+    --nrd-max:    1200px;
+    --nrd-gutter: 24px;
+    --nrd-radius: 6px;
+    --nrd-shadow: 0 10px 30px rgba(13, 27, 37, .12);
 
-/* All the basic variables for the colors to start the theme */
-:root {
+    --nrd-header-shadow: 0 2px 16px rgba(0,0,0,0.07);
+
     --primary-color: #ff0000; 
     --secondary-color: #00ff00;     
     --background-color: #fff;
@@ -102,22 +101,25 @@ body {
     padding: 20px 0;
     text-align: center;
 } */
+
+/* Topbar styling and Header styling */
 .nrd-topbar { 
     height: 6px; 
     background: var(--nrd-orange); 
 }
 
 .nrd-header {
-  position: absolute;
-  top: 6px; left: 0; right: 0;
-  z-index: 50;
+    background-color: var(--background-color);
+    position: absolute;
+    top: 6px; left: 0; right: 0;
+    z-index: 50;
 }
 
 .nrd-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 92px;
 }
 
 /* Layout lives on .nrd-header__inner; this block only styles the bar itself */
@@ -142,58 +144,7 @@ body:not(.admin-bar) .nrd-header.sticky-header {
     top: 0;
 }
 
-.nrd-nav { 
-    display: flex; 
-    align-items: center; 
-    gap: 28px; 
-}
-.nrd-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 26px;
-  margin: 0; padding: 0;
-}
-.nrd-nav a {
-  font-family: var(--nrd-font-head);
-  font-size: 1.02rem;
-  font-weight: 500;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--nrd-black);
-  padding: 6px 0;
-  border-bottom: 2px solid transparent;
-}
-.nrd-nav ul a:hover,
-.nrd-nav .current-menu-item > a { 
-    color: var(--nrd-orange); 
-    border-bottom-color: var(--nrd-orange); 
-}
-.nrd-nav .nrd-btn { padding: 10px 22px; font-size: .95rem; border-bottom: 2px solid var(--nrd-orange); }
-.nrd-nav .nrd-nav__login { opacity: .85; }
 
-/* Mobile toggle (CSS-only; replace with JS later if desired) */
-.nrd-nav-toggle { display: none; }
-.nrd-nav-toggle-label {
-  display: none;
-  width: 48px; height: 48px;
-  border-radius: 50%;
-  background: var(--nrd-orange);
-  cursor: pointer;
-  position: relative;
-}
-.nrd-nav-toggle-label span,
-.nrd-nav-toggle-label span::before,
-.nrd-nav-toggle-label span::after {
-  position: absolute;
-  left: 13px;
-  width: 22px; height: 2px;
-  background: var(--nrd-white);
-  content: "";
-  transition: transform .25s, top .25s, opacity .25s;
-}
-.nrd-nav-toggle-label span { top: 23px; }
-.nrd-nav-toggle-label span::before { left: 0; top: -7px; }
-.nrd-nav-toggle-label span::after  { left: 0; top: 7px; }
 
 h1 {
     margin: 0;

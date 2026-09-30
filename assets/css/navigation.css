@@ -1,1 +1,77 @@
 /* All global navigation styling */
+/* Navigation styling */
+.nrd-nav {
+    display: flex; 
+    align-items: center; 
+    gap: 28px; 
+    margin-right: 0.5rem;
+}
+
+.nrd-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 26px;
+    margin: 0; 
+    padding: 0;
+}
+
+.nrd-nav a {
+    color: var(--nrd-black);
+    border-bottom: 2px solid transparent;
+    font-family: var(--nrd-font-head);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+    padding: 6px 0;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nrd-nav ul a:hover,
+.nrd-nav .current_page_item > a,
+.nrd-nav .current-menu-item > a { 
+    color: var(--nrd-red); 
+    border-bottom: 2px solid var(--nrd-red); 
+    font-weight: bolder
+}
+
+.nrd-nav .nrd-btn { 
+    padding: 10px 22px; 
+    font-size: 1.0rem;
+    border-bottom: 2px solid var(--nrd-orange); 
+}
+
+.nrd-nav .nrd-nav__login { opacity: .85; }
+
+/* Mobile toggle (CSS-only; replace with JS later if desired) */
+.nrd-nav-toggle { display: none; }
+.nrd-nav-toggle-label {
+    display: none;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--nrd-orange);
+    cursor: pointer;
+    position: relative;
+}
+.nrd-nav-toggle-label span,
+.nrd-nav-toggle-label span::before,
+.nrd-nav-toggle-label span::after {
+    position: absolute;
+    left: 13px;
+    width: 22px; height: 2px;
+    background: var(--nrd-white);
+    content: "";
+    transition: transform .25s, top .25s, opacity .25s;
+}
+.nrd-nav-toggle-label span { top: 23px; }
+.nrd-nav-toggle-label span::before { left: 0; top: -7px; }
+.nrd-nav-toggle-label span::after  { left: 0; top: 7px; }
+
+/* .current_page_item a,
+.current-menu-item a {
+    color: var(--primary-color);
+    font-weight: bold; 
+    font-style: italic; 
+    text-decoration: underline; 
+    border-bottom: 2px solid #f00; 
+} */
