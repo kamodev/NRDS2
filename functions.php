@@ -46,6 +46,8 @@ function nrds_theme_setup() {
 function nrds_theme_scripts() {
     // Enqueue styles
     wp_enqueue_style('nrds-theme-style', get_stylesheet_uri());
+    // Screen breakpoints load after the main stylesheet so they override the base rules
+    wp_enqueue_style('nrds-theme-screens', get_template_directory_uri() . '/assets/css/screens.css', array('nrds-theme-style'));
 
     // Enqueue scripts
     wp_enqueue_script('nrds-theme-script', get_template_directory_uri() . '/assets/js/script.js', array('jquery'), null, true);

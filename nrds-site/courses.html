@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Courses | National Readiness &amp; Defense</title>
+  <meta name="description" content="Firearms, Colorado CHP, First Aid/CPR, self-defense and preparedness courses, both in-person and online.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page page-courses">
+
+<!-- ===================== header.php START ===================== -->
+<div class="nrd-topbar"></div>
+<header class="nrd-header nrd-header--solid">
+  <div class="nrd-container nrd-header__inner">
+    <a class="nrd-logo" href="index.html" aria-label="National Readiness &amp; Defense home">
+      <span class="nrd-logo__stack">
+        <span><b>N</b>ational</span>
+        <span><b>R</b>eadiness</span>
+        <span><b>D</b>efense</span>
+      </span>
+      <span class="nrd-logo__cross" aria-hidden="true"></span>
+    </a>
+    <input type="checkbox" id="nrd-nav-toggle" class="nrd-nav-toggle">
+    <label for="nrd-nav-toggle" class="nrd-nav-toggle-label" aria-label="Open menu"><span></span></label>
+    <nav class="nrd-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="current-menu-item"><a href="courses.html">Courses</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a class="nrd-nav__login" href="https://nrds.life/my-courses/">Login</a>
+      <a class="nrd-btn" href="schedule.html">Book a Class</a>
+    </nav>
+  </div>
+</header>
+<!-- ===================== header.php END ======================= -->
+
+<main id="main">
+
+  <section class="nrd-page-hero" style="background-image:url('https://nrds.life/wp-content/uploads/2025/10/AdobeStock_440346209-1536x1024.jpeg');">
+    <div class="nrd-container">
+      <div class="nrd-breadcrumb"><a href="index.html">Home</a> / Courses</div>
+      <h1>Our <span class="nrd-accent">Courses</span></h1>
+      <p>Practical, hands-on instruction in firearms, first aid, self-defense and preparedness, plus self-paced online courses.</p>
+    </div>
+  </section>
+
+  <section class="nrd-section nrd-section--tight-top">
+    <div class="nrd-container">
+
+      <!-- WP: category links -> get_terms( 'course-category' ) -->
+      <nav class="nrd-filter" aria-label="Course categories">
+        <a href="#firearms" class="is-active">Firearms</a>
+        <a href="#medical">Medical</a>
+        <a href="#self-defense">Self Defense</a>
+        <a href="#preparedness">Preparedness</a>
+        <a href="#online">Online</a>
+      </nav>
+
+      <!-- FIREARMS -->
+      <div id="firearms" class="nrd-section-head nrd-section-head--tight">
+        <h2>Firearms</h2>
+        <hr class="nrd-rule">
+      </div>
+      <div class="nrd-grid">
+        <article class="nrd-course">
+          <div class="nrd-course__img">
+            <img src="https://nrds.life/wp-content/uploads/2025/10/AdobeStock_440346209-1536x1024.jpeg" alt="Colorado concealed handgun permit" loading="lazy">
+            <span class="nrd-course__tag">Firearms</span>
+          </div>
+          <div class="nrd-course__body">
+            <h3><a href="https://nrds.life/course/colorado-concealed-handgun-permit/">Colorado Concealed Handgun Permit (CHP)</a></h3>
+            <p>Learn to carry a concealed handgun safely and lawfully for personal protection. Meets SB24-1174 requirements: 8 hours in person, live fire and a written exam.</p>
+            <div class="nrd-course__foot">
+              <a class="nrd-link-arrow" href="https://nrds.life/course/colorado-concealed-handgun-permit/">Read More</a>
+              <a class="nrd-btn nrd-btn--sm" href="schedule.html">Dates</a>
+            </div>
+          </div>
+        </article>
+        <article class="nrd-course">
+          <div class="nrd-course__img">
+            <img src="https://nrds.life/wp-content/uploads/2026/04/nrd-wif.webp" alt="Defensive pistol training" loading="lazy">
+            <span class="nrd-course__tag">Firearms</span>
+          </div>
+          <div class="nrd-course__body">
+            <h3><a href="https://nrds.life/course/pistol-200-introduction-to-defensive-pistol/">PISTOL-200: Introduction to Defensive Pistol</a></h3>
+            <p>Open to everyone, whatever your shooting experience. You'll get direct, hands-on instruction from an NRA-certified instructor from start to finish.</p>
+            <div class="nrd-course__foot">
+              <a class="nrd-link-arrow" href="https://nrds.life/course/pistol-200-introduction-to-defensive-pistol/">Read More</a>
+              <a class="nrd-btn nrd-btn--sm" href="schedule.html">Dates</a>
+            </div>
+          </div>
+        </article>
+        <article class="nrd-course">
+          <div class="nrd-course__img">
+            <span class="nrd-course__tag">Firearms</span>
+          </div>
+          <div class="nrd-course__body">
+            <h3><a href="https://nrds.life/course/basic-pistol-shooting/">Basic Pistol Shooting</a></h3>
+            <p>Build a solid foundation in safe handling, marksmanship fundamentals and range etiquette.</p>
+            <div class="nrd-course__foot">
+              <a class="nrd-link-arrow" href="https://nrds.life/course/basic-pistol-shooting/">Read More</a>
+              <a class="nrd-btn nrd-btn--sm" href="schedule.html">Dates</a>
+            </div>
+          </div>
+        </article>
+        <article class="nrd-course">
+          <div class="nrd-course__img">
+            <img src="https://nrds.life/wp-content/uploads/2026/04/nrd-wif.webp" alt="Women's handgun course" loading="lazy">
+            <span class="nrd-course__tag">Firearms</span>
+          </div>
+          <div class="nrd-course__body">
+            <h3><a href="https://nrds.life/course/womens-intermediate-handgun/">Women's Intermediate Handgun</a></h3>
+            <p>A supportive, women-focused course that builds confidence and moves you beyond the basics.</p>
+            <div class="nrd-course__foot">
+              <a class="nrd-link-arrow" href="https://nrds.life/course/womens-intermediate-handgun/">Read More</a>
+              <a class="nrd-btn nrd-btn--sm" href="schedule.html">Dates</a>
+            </div>
+          </div>
+        </article>
+        <article class="nrd-course">
+          <div class="nrd-course__img">
+            <img src="https://nrds.life/wp-content/uploads/2026/04/nrd-wif.webp" alt="Women's advanced handgun course" loading="lazy">
+            <span class="nrd-course__tag">Firearms</span>
+          </div>
+          <div class="nrd-course__body">
+            <h3><a href="https://nrds.life/course/womens-advanced-handgun/">Women's Advanced Handgun</a></h3>
+            <p>Sharpen your speed, accuracy and defensive skills in an advanced, women-led setting.</p>
+            <div class="nrd-course__foot">
+              <a class="nrd-link-arrow" href="https://nrds.life/course/womens-advanced-handgun/">Read More</a>
+              <a class="nrd-btn nrd-btn--sm" href="schedule.html">Dates</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- MEDICAL -->
+      <div id="medical" class="nrd-section-head nrd-section-head--tight nrd-mt-xl">
+        <h2>Medical &amp; First Aid</h2>
+        <hr class="nrd-rule">
+      </div>
+      <div class="nrd-grid">
+        <article class="nrd-course">
+          <div class="nrd-course__img">
+            <img src="https://nrds.life/wp-content/uploads/2026/05/arc-cpr-blended.webp" alt="Adult and pediatric CPR training" loading="lazy">
+            <span class="nrd-course__tag">Medical</span>
+          </div>
+          <div class="nrd-course__body">
+            <h3><a href="https://nrds.life/course/adult-and-pediatric-first-aid-cpr-aed-bl/">APFACA-BL-R25: Adult &amp; Pediatric First Aid / CPR / AED</a></h3>
+            <p>Blended-learning certification that prepares you to respond to emergencies involving adults, children and infants.</p>
+            <div class="nrd-course__foot">
+              <a class="nrd-link-arrow" href="https://nrds.life/course/adult-and-pediatric-first-aid-cpr-aed-bl/">Read More</a>
+              <a class="nrd-btn nrd-btn--sm" href="schedule.html">Dates</a>
+            </div>
+          </div>
+        </article>
+        <article class="nrd-course">
+          <div class="nrd-course__img">
+            <span class="nrd-course__tag">Medical</span>
+          </div>
+          <div class="nrd-course__body">
+            <h3><a href="https://nrds.life/course/fa-100-what-is-first-aid/">FA-100: What Is First Aid?</a></h3>
+            <p>A short, approachable introduction to first aid. Learn what to do in the first critical minutes.</p>
+            <div class="nrd-course__foot">
+              <a class="nrd-link-arrow" href="https://nrds.life/course/fa-100-what-is-first-aid/">Read More</a>
+              <a class="nrd-btn nrd-btn--sm" href="schedule.html">Dates</a>
+            </div>
+          </div>
+        </article>
+        <article class="nrd-course">
+          <div class="nrd-course__img">
+            <span class="nrd-course__tag">Medical</span>
+          </div>
+          <div class="nrd-course__body">
+            <h3><a href="https://nrds.life/course/building-a-first-aid-kit/">Building a First Aid Kit</a></h3>
+            <p>Learn what belongs in a kit for your home, vehicle and go-bag, and how to use each item.</p>
+            <div class="nrd-course__foot">
+              <a class="nrd-link-arrow" href="https://nrds.life/course/building-a-first-aid-kit/">Read More</a>
+              <a class="nrd-btn nrd-btn--sm" href="schedule.html">Dates</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- SELF DEFENSE + PREPAREDNESS -->
+      <div class="nrd-grid nrd-grid--2 nrd-grid--wide-gap nrd-mt-xl">
+        <div>
+          <div id="self-defense" class="nrd-section-head nrd-section-head--tight">
+            <h2>Self Defense</h2>
+            <hr class="nrd-rule">
+          </div>
+          <article class="nrd-course">
+            <div class="nrd-course__img">
+              <img src="https://nrds.life/wp-content/uploads/2026/06/nra-rtbv.webp" alt="Refuse To Be A Victim" loading="lazy">
+              <span class="nrd-course__tag">Self Defense</span>
+            </div>
+            <div class="nrd-course__body">
+              <h3><a href="https://nrds.life/course/refuse-to-be-a-victim/">Refuse To Be A Victim</a></h3>
+              <p>Personal safety strategies, situational awareness and crime prevention for home, work and travel.</p>
+              <div class="nrd-course__foot">
+                <a class="nrd-link-arrow" href="https://nrds.life/course/refuse-to-be-a-victim/">Read More</a>
+                <a class="nrd-btn nrd-btn--sm" href="schedule.html">Dates</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div>
+          <div id="preparedness" class="nrd-section-head nrd-section-head--tight">
+            <h2>Preparedness</h2>
+            <hr class="nrd-rule">
+          </div>
+          <article class="nrd-course">
+            <div class="nrd-course__img">
+              <img src="https://nrds.life/wp-content/uploads/2025/04/go-bag-fundamentals-2.webp" alt="Go-bag fundamentals" loading="lazy">
+              <span class="nrd-course__tag">Preparedness</span>
+            </div>
+            <div class="nrd-course__body">
+              <h3><a href="https://nrds.life/course/go-bag-fundamentals/">Go Bag Fundamentals</a></h3>
+              <p>Build a go-bag that works for your family, your climate and the disasters most likely where you live.</p>
+              <div class="nrd-course__foot">
+                <a class="nrd-link-arrow" href="https://nrds.life/course/go-bag-fundamentals/">Read More</a>
+                <a class="nrd-btn nrd-btn--sm" href="schedule.html">Dates</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONLINE COURSES -->
+  <section id="online" class="nrd-section nrd-section--gray">
+    <div class="nrd-container">
+      <div class="nrd-section-head">
+        <span class="nrd-eyebrow">Learn anytime</span>
+        <h2>Online <span class="nrd-accent">courses</span></h2>
+        <hr class="nrd-rule">
+        <p>Self-paced lessons you can take from home, on your own schedule.</p>
+      </div>
+      <!-- WP: WooCommerce / Sensei product loop -->
+      <div class="nrd-grid nrd-grid--4">
+        <article class="nrd-course">
+          <div class="nrd-course__body">
+            <h3>Holster Selection</h3>
+            <p>Choose the right holster for your firearm, body type and carry style.</p>
+            <div class="nrd-course__foot">
+              <span class="nrd-price">$9.99</span>
+              <a class="nrd-btn nrd-btn--sm" href="https://nrds.life/company-courses/">Enroll</a>
+            </div>
+          </div>
+        </article>
+        <article class="nrd-course">
+          <div class="nrd-course__body">
+            <h3>Firearm Safety Rules</h3>
+            <p>The core safety rules every gun owner must know and practice.</p>
+            <div class="nrd-course__foot">
+              <span class="nrd-price">$9.99</span>
+              <a class="nrd-btn nrd-btn--sm" href="https://nrds.life/company-courses/">Enroll</a>
+            </div>
+          </div>
+        </article>
+        <article class="nrd-course">
+          <div class="nrd-course__body">
+            <h3>CCW / CHP Handbook</h3>
+            <p>A free reference guide for concealed carry permit holders.</p>
+            <div class="nrd-course__foot">
+              <span class="nrd-price">Free</span>
+              <a class="nrd-btn nrd-btn--sm" href="https://nrds.life/company-courses/">Get It</a>
+            </div>
+          </div>
+        </article>
+        <article class="nrd-course">
+          <div class="nrd-course__body">
+            <h3>Handgun Owner Foundations</h3>
+            <p>A complete foundation in owning, storing and handling a handgun responsibly.</p>
+            <div class="nrd-course__foot">
+              <span class="nrd-price">$49.99</span>
+              <a class="nrd-btn nrd-btn--sm" href="https://nrds.life/company-courses/">Enroll</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHP LAW CALLOUT -->
+  <section class="nrd-section">
+    <div class="nrd-container">
+      <div class="nrd-callout">
+        <span class="nrd-eyebrow">Colorado SB24-1174</span>
+        <h3>What the new CHP training law requires</h3>
+        <p>Starting July 1, 2025, new Colorado concealed handgun permit applicants must complete a comprehensive training course that includes:</p>
+        <ul class="nrd-checklist nrd-checklist--cols">
+          <li>At least 8 hours of in-person instruction</li>
+          <li>Safe handling and storage of firearms</li>
+          <li>Shooting fundamentals</li>
+          <li>State and federal firearm laws</li>
+          <li>Proper interactions with law enforcement</li>
+          <li>A live-fire exercise and a written exam</li>
+          <li>Instruction by a sheriff-verified instructor</li>
+        </ul>
+        <a class="nrd-btn" href="schedule.html">See Upcoming CHP Classes</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== footer.php START ===================== -->
+<footer class="nrd-footer">
+  <div class="nrd-container">
+    <div class="nrd-footer__grid">
+      <div>
+        <a class="nrd-logo" href="index.html">
+          <span class="nrd-logo__stack">
+            <span><b>N</b>ational</span>
+            <span><b>R</b>eadiness</span>
+            <span><b>D</b>efense</span>
+          </span>
+          <span class="nrd-logo__cross" aria-hidden="true"></span>
+        </a>
+        <p>Empowering individuals, families and communities with the skills to stay safe, strong and prepared.</p>
+        <div class="nrd-social">
+          <a href="https://www.facebook.com/national.readiness.defense/" aria-label="Facebook" target="_blank" rel="noopener">f</a>
+          <a href="https://x.com/NRDreadydefense" aria-label="X" target="_blank" rel="noopener">X</a>
+          <a href="mailto:info@nrds.life" aria-label="Email">@</a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="courses.html">Our Courses</a></li>
+          <li><a href="schedule.html">Training Schedule</a></li>
+          <li><a href="https://nrds.life/membership-options">Membership</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Students</h4>
+        <ul>
+          <li><a href="https://nrds.life/student-portal/">Student Portal</a></li>
+          <li><a href="https://nrds.life/my-courses/">My Courses / Login</a></li>
+          <li><a href="https://nrds.life/student-safety-conduct-policy/">Safety &amp; Conduct Policy</a></li>
+          <li><a href="https://nrds.life/national-preparedness-month/">Preparedness Month</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:info@nrds.life">info@nrds.life</a></li>
+          <li>Colorado</li>
+        </ul>
+        <a class="nrd-btn nrd-footer__cta" href="schedule.html">Book a Class</a>
+      </div>
+    </div>
+    <div class="nrd-footer__legal">
+      <p>Firearms training is conducted in accordance with all applicable federal, state and local laws. Information on this site is for educational purposes and is not legal advice. Consult an attorney about your specific situation.</p>
+    </div>
+    <div class="nrd-footer__bottom">
+      <span>&copy; 2026 National Readiness &amp; Defense. All rights reserved.</span>
+      <ul>
+        <li><a href="https://nrds.life/terms-and-conditions/">Terms &amp; Conditions</a></li>
+        <li><a href="https://nrds.life/student-safety-conduct-policy/">Student Safety Policy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<!-- ===================== footer.php END ======================= -->
+
+</body>
+</html>
