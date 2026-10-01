@@ -1,17 +1,17 @@
 /* ==========================================================================
    NRDS buttons — knife-edge (blade-cut) style
-   Standalone copy of the button rules from the NRDS theme (assets/css/main.css v1.1.0).
-   Uses Oswald for the label: load it from Google Fonts or change --font-head.
+   Colors come from the Theme Settings palette (assets/css/tokens.css):
+   primary for buttons, secondary for .btn-navy, light for text and outlines.
    ========================================================================== */
 
 :root {
-	--navy: #0b1f3a;
-	--navy-dark: #061326;
-	--navy-light: #16325a;
-	--orange: #f26a1b;
-	--orange-dark: #d4550c;
-	--white: #fff;
-	--font-head: "Oswald", "Arial Narrow", Arial, sans-serif;
+	--navy: var(--nrd-secondary);
+	--navy-dark: var(--nrd-dark);
+	--navy-light: var(--nrd-dark);
+	--orange: var(--nrd-primary);
+	--orange-dark: var(--nrd-primary-hover);
+	--white: var(--nrd-light);
+	--font-head: var(--nrd-font-head);
 }
 
 /* ---------- Base button ---------- */
@@ -46,7 +46,7 @@
 /* ---------- Variants ---------- */
 /* outline: for dark backgrounds (e.g. the hero) */
 .btn-outline { background: transparent; color: var(--white); border-color: var(--white); }
-.btn-outline:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
+.btn-outline:hover { background: var(--white); color: var(--nrd-dark); border-color: var(--white); }
 
 /* navy: on orange backgrounds, or as a secondary action */
 .btn-navy { background: var(--navy); border-color: var(--navy); }

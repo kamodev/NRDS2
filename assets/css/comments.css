@@ -1,11 +1,11 @@
-/* Comments stylinng */
+/* Comments styling */
 .commentlist {
     list-style: none;
     padding: 0;
 }
 
 .commentlist li {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--nrd-border);
     padding: 10px 0;
 }
 
@@ -15,9 +15,33 @@
 
 .commentlist li .comment-meta {
     font-size: 0.9em;
-    color: #666;
+    color: var(--nrd-text-muted);
 }
 
 .commentlist li .comment-content {
     margin-top: 5px;
+}
+
+.comments-area {
+    border-top: 1px solid var(--nrd-border);
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+}
+
+.comment-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form textarea {
+    border: 2px solid var(--nrd-border);
+    box-sizing: border-box;
+    font: inherit;
+    max-width: 100%;
+    padding: 10px 12px;
+    width: 100%;
 }

@@ -1,0 +1,284 @@
+/* ==========================================================================
+   Content: titles, post lists, pagination, search, sidebars' widgets and
+   WordPress alignment helpers.
+   ========================================================================== */
+
+h1, h2, h3, h4 {
+    font-family: var(--nrd-font-head);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: .01em;
+}
+
+/* ---------- Titles ---------- */
+.page-header,
+.entry-header {
+    border-bottom: 3px solid var(--nrd-primary);
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+}
+
+.page-title,
+.entry-title {
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.page-description {
+    color: var(--nrd-text-muted);
+    margin-top: .5rem;
+}
+
+.page-description p:last-child {
+    margin-bottom: 0;
+}
+
+.entry-meta,
+.post-meta {
+    color: var(--nrd-text-muted);
+    font-size: .95rem;
+    margin-top: .5rem;
+}
+
+.post-header-image .post-meta,
+.post-header-image .post-meta a {
+    color: var(--nrd-light);
+}
+
+.post-header-image {
+    margin-bottom: 1.75rem;
+}
+
+.entry-content > *:first-child {
+    margin-top: 0;
+}
+
+.entry-footer {
+    border-top: 1px solid var(--nrd-border);
+    color: var(--nrd-text-muted);
+    font-size: .95rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+}
+
+.edit-link {
+    font-size: .9rem;
+}
+
+.page-links {
+    clear: both;
+    margin: 1.5rem 0;
+}
+
+/* ---------- Post lists ---------- */
+.nrds-posts {
+    display: grid;
+    gap: 28px;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+
+.nrds-card {
+    background: var(--nrd-light);
+    border: 1px solid var(--nrd-border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.nrds-card__media img {
+    aspect-ratio: 16 / 10;
+    display: block;
+    height: auto;
+    object-fit: cover;
+    width: 100%;
+}
+
+.nrds-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px 22px 24px;
+}
+
+.nrds-card__title {
+    font-size: 1.35rem;
+    margin: 0 0 .4rem;
+    text-transform: uppercase;
+}
+
+.nrds-card__title a {
+    color: var(--nrd-dark);
+    text-decoration: none;
+}
+
+.nrds-card__title a:hover {
+    color: var(--nrd-primary);
+}
+
+.nrds-card__meta {
+    color: var(--nrd-text-muted);
+    font-size: .85rem;
+    margin-bottom: .75rem;
+}
+
+.nrds-card__excerpt {
+    color: var(--nrd-text-muted);
+    flex: 1;
+}
+
+.nrds-card__more {
+    font-family: var(--nrd-font-head);
+    letter-spacing: .06em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nrds-callout {
+    background: var(--nrd-surface-alt);
+    border-left: 4px solid var(--nrd-primary);
+    padding: 28px 32px;
+}
+
+.nrds-callout h2 {
+    margin-top: 0;
+    text-transform: uppercase;
+}
+
+/* ---------- Pagination and post navigation ---------- */
+.nrds-pagination,
+.post-navigation {
+    margin-top: 2.5rem;
+}
+
+.nrds-pagination .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.nrds-pagination .page-numbers {
+    border: 1px solid var(--nrd-border);
+    color: var(--nrd-dark);
+    display: inline-grid;
+    min-width: 42px;
+    padding: 8px 12px;
+    place-items: center;
+    text-decoration: none;
+}
+
+.nrds-pagination .page-numbers.current,
+.nrds-pagination a.page-numbers:hover {
+    background: var(--nrd-primary);
+    border-color: var(--nrd-primary);
+    color: var(--nrd-on-primary);
+}
+
+.post-navigation .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    justify-content: space-between;
+}
+
+.post-navigation a {
+    font-family: var(--nrd-font-head);
+    text-decoration: none;
+}
+
+/* ---------- Search form ---------- */
+.nrds-search-form {
+    display: flex;
+    max-width: 520px;
+}
+
+.nrds-search-form .search-field {
+    border: 2px solid var(--nrd-border);
+    border-right: 0;
+    flex: 1;
+    font: inherit;
+    min-width: 0;
+    padding: 12px 14px;
+}
+
+.nrds-search-form .search-field:focus {
+    border-color: var(--nrd-primary);
+    outline: none;
+}
+
+.nrds-404 .entry-content {
+    text-align: center;
+}
+
+.nrds-404 .nrds-search-form {
+    margin: 1.5rem auto;
+}
+
+.nrds-404__actions {
+    margin-top: 2rem;
+}
+
+/* ---------- Sidebar widgets ---------- */
+.sidebar .widget + .widget {
+    margin-top: 1.75rem;
+}
+
+.sidebar .widget-title {
+    border-bottom: 2px solid var(--nrd-primary);
+    font-size: 1.05rem;
+    letter-spacing: .08em;
+    margin: 0 0 .75rem;
+    padding-bottom: .4rem;
+    text-transform: uppercase;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: .5rem;
+}
+
+.sidebar a {
+    color: var(--nrd-dark);
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    color: var(--nrd-primary);
+}
+
+/* ---------- WordPress alignment helpers ---------- */
+.alignleft {
+    float: left;
+    margin: 0 24px 16px 0;
+}
+
+.alignright {
+    float: right;
+    margin: 0 0 16px 24px;
+}
+
+.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-caption-text,
+.wp-element-caption {
+    color: var(--nrd-text-muted);
+    font-size: .9rem;
+    text-align: center;
+}
+
+/* Full-width blocks break out of the content padding when there are no sidebars */
+.no-sidebar .entry-content > .alignfull {
+    margin-left: calc(-1 * var(--main-padding-x));
+    margin-right: calc(-1 * var(--main-padding-x));
+    max-width: none;
+    width: auto;
+}

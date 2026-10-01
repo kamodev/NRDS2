@@ -25,6 +25,7 @@
     padding: 6px 0;
     text-decoration: none;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .nrd-nav ul a:hover,

@@ -1,71 +1,72 @@
 <?php
 /**
- * The template for displaying single posts
+ * Single post.
  *
- * This template displays a header image that prefers the post featured image (post thumbnail)
- * and falls back to the theme's custom header image (if set). It also outputs the title,
- * post meta, content and the comments template.
+ * The header shows the post's featured image, or the theme's custom header
+ * image, behind the title unless post header images are turned off in
+ * Appearance → Theme Settings → Layout.
  *
- * @package nrds
+ * @package NRDS
  */
 
 get_header();
 ?>
-
 <main id="main" class="site-main">
-    <?php
-    if ( have_posts() ) :
-        while ( have_posts() ) : the_post();
-            // Check theme option: optionally disable post header images
-            $options = get_option( 'nrds_theme_settings_options', array() );
-            $disable_header = ! empty( $options['disable_post_header_images'] );
+	<?php
+	while ( have_posts() ) :
+		the_post();
 
-            // Determine header image only when not disabled in settings
-            $header_image = '';
-            if ( ! $disable_header ) {
-                if ( has_post_thumbnail() ) {
-                    $header_image = get_the_post_thumbnail_url( get_the_ID(), 'full' );
-                } else {
-                    // get_custom_header()->url is available when custom-header support is enabled
-                    $custom_header = get_header_image();
-                    if ( $custom_header ) {
-                        $header_image = esc_url( $custom_header );
-                    }
-                }
-            }
-            ?>
+		$nrds_header_image = '';
+		if ( 'show' === nrds_setting( 'post_header_image' ) ) {
+			$nrds_header_image = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'full' ) : get_header_image();
+		}
+		?>
+		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<?php if ( $nrds_header_image ) : ?>
+				<header class="post-header-image" style="background-image: url('<?php echo esc_url( $nrds_header_image ); ?>');">
+					<div class="post-header-overlay">
+						<h1 class="post-title entry-title"><?php the_title(); ?></h1>
+						<div class="post-meta"><?php nrds_posted_on(); ?></div>
+					</div>
+				</header>
+			<?php else : ?>
+				<header class="entry-header">
+					<h1 class="post-title entry-title"><?php the_title(); ?></h1>
+					<div class="post-meta entry-meta"><?php nrds_posted_on(); ?></div>
+				</header>
+			<?php endif; ?>
 
-            <?php if ( $header_image ) : ?>
-                <div class="post-header-image" style="background-image: url('<?php echo esc_url( $header_image ); ?>');">
-                    <div class="post-header-overlay">
-                        <h1 class="post-title"><?php the_title(); ?></h1>
-                        <div class="post-meta">Posted on <?php echo get_the_date(); ?> by <?php the_author_posts_link(); ?></div>
-                    </div>
-                </div>
-            <?php else : ?>
-                <header class="entry-header">
-                    <h1 class="post-title"><?php the_title(); ?></h1>
-                    <div class="post-meta">Posted on <?php echo get_the_date(); ?> by <?php the_author_posts_link(); ?></div>
-                </header>
-            <?php endif; ?>
+			<div class="entry-content">
+				<?php
+				the_content();
+				wp_link_pages(
+					array(
+						'before' => '<nav class="page-links" aria-label="' . esc_attr__( 'Page', 'nrds-theme' ) . '">' . esc_html__( 'Pages:', 'nrds-theme' ),
+						'after'  => '</nav>',
+					)
+				);
+				?>
+			</div>
 
-            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                <div class="entry-content">
-                    <?php the_content(); ?>
-                </div>
-            </article>
+			<footer class="entry-footer">
+				<?php the_tags( '<p class="entry-tags">' . esc_html__( 'Tags: ', 'nrds-theme' ), ', ', '</p>' ); ?>
+				<?php edit_post_link( __( 'Edit this post', 'nrds-theme' ), '<p class="edit-link">', '</p>' ); ?>
+			</footer>
+		</article>
 
-            <?php
-            // If comments are open or we have comments, load the comment template
-            if ( comments_open() || get_comments_number() ) :
-                comments_template();
-            endif;
+		<?php
+		the_post_navigation(
+			array(
+				'prev_text' => '&larr; %title',
+				'next_text' => '%title &rarr;',
+			)
+		);
 
-        endwhile;
-    else :
-        echo '<p>No content found</p>';
-    endif;
-    ?>
+		if ( comments_open() || get_comments_number() ) {
+			comments_template();
+		}
+	endwhile;
+	?>
 </main>
-
-<?php get_footer(); ?>
+<?php
+get_footer();

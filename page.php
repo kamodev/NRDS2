@@ -1,19 +1,42 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Page.
+ *
+ * @package NRDS
+ */
 
+get_header();
+?>
 <main id="main" class="site-main">
-  <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-  <article class="post" id="post-<?php the_ID(); ?>">
-    <header>
-      <h2><?php the_title(); ?></h2>
-    </header>
-  
-    <?php the_content('<p class="serif">Read the rest of this page &raquo;</p>'); ?>
+	<?php
+	while ( have_posts() ) :
+		the_post();
+		?>
+		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<header class="entry-header">
+				<h1 class="entry-title"><?php the_title(); ?></h1>
+			</header>
 
-    <?php wp_link_pages(array('before' => '<p><strong>Pages:</strong> ', 'after' => '</p>', 'next_or_number' => 'number')); ?>
-  
-  </article>
-  <?php endwhile; endif; ?>
-  <?php edit_post_link('Edit this entry.', '<p>', '</p>'); ?>
+			<div class="entry-content">
+				<?php
+				the_content();
+				wp_link_pages(
+					array(
+						'before' => '<nav class="page-links" aria-label="' . esc_attr__( 'Page', 'nrds-theme' ) . '">' . esc_html__( 'Pages:', 'nrds-theme' ),
+						'after'  => '</nav>',
+					)
+				);
+				?>
+			</div>
+
+			<?php edit_post_link( __( 'Edit this page', 'nrds-theme' ), '<p class="edit-link">', '</p>' ); ?>
+		</article>
+		<?php
+		if ( comments_open() || get_comments_number() ) {
+			comments_template();
+		}
+	endwhile;
+	?>
 </main>
-
-<?php get_footer(); ?>
+<?php
+get_footer();

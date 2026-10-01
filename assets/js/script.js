@@ -1,13 +1,20 @@
 jQuery(document).ready(function($) {
     var header = $('.nrd-header');
     var stickyClass = 'sticky-header';
-    var headerOffset = header.offset().top;
+    var headerOffset = header.length ? header.offset().top : 0;
+    // Holds the header's space while it is fixed, so the page doesn't jump up
+    var headerPlaceholder = $('<div class="nrd-header-placeholder" aria-hidden="true"></div>').hide().insertAfter(header);
 
     $(window).scroll(function() {
+        if (!header.length) return;
         if ($(window).scrollTop() > headerOffset) {
-            header.addClass(stickyClass);
-        } else {
+            if (!header.hasClass(stickyClass)) {
+                headerPlaceholder.height(header.outerHeight()).show();
+                header.addClass(stickyClass);
+            }
+        } else if (header.hasClass(stickyClass)) {
             header.removeClass(stickyClass);
+            headerPlaceholder.hide();
         }
     });
 
