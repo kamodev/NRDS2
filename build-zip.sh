@@ -28,23 +28,22 @@ fi
 # ---------- Checks ----------
 errors=0
 
-# PHP syntax
+# PHP syntax (every theme PHP file, skipping the static mockup)
 if command -v php >/dev/null; then
-    for f in *.php inc/*.php; do
-        [ -f "$f" ] || continue
+    while IFS= read -r f; do
         if ! out="$(php -l "$f" 2>&1)"; then
             echo "$out" >&2
             errors=1
         fi
-    done
+    done < <(find . -name '*.php' -not -path './.git/*' -not -path './nrds-site/*' | sort)
 else
     echo "Warning: php not found, skipping syntax check" >&2
 fi
 
-# Every active @import in style.css must exist (commented-out imports are ignored)
-for f in $(python3 -c 'import re,sys; print(re.sub(r"/\*.*?\*/", "", open("style.css").read(), flags=re.S))' | grep -o '@import "[^"]*"' | cut -d'"' -f2); do
-    if [ ! -f "$f" ]; then
-        echo "Error: style.css imports $f, which does not exist" >&2
+# Every stylesheet part listed in nrds_style_parts() (functions.php) must exist
+for part in tokens $(python3 -c 'import re; m=re.search(r"function nrds_style_parts\(\).*?array\((.*?)\)", open("functions.php").read(), re.S); print(" ".join(re.findall(r"\x27([\w-]+)\x27", m.group(1))) if m else "")'); do
+    if [ ! -f "assets/css/$part.css" ]; then
+        echo "Error: functions.php enqueues assets/css/$part.css, which does not exist" >&2
         errors=1
     fi
 done

@@ -1,90 +1,29 @@
 /*
 Theme Name: NRDS Business Theme
 Theme URI: https://www.n0kmo.com
-Description: Based custom coding for NRDS Business Theme.
-Version: 2.0
+Description: Custom business theme for National Readiness & Defense. Theme Settings for color themes, sized or full-screen layout and left/right sidebars, plus a four-column footer that takes menus, widgets and hooked content.
+Version: 3.0.0
+Requires at least: 6.1
+Requires PHP: 7.4
 Author: Jeremiah Bagula
 Author URI: http://www.nrds.life/
-Tags: white, two-columns, fullwidth-template, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, theme-options, threaded-comments, translation-ready
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: nrds-theme
+Tags: white, two-columns, three-columns, left-sidebar, right-sidebar, full-width-template, custom-colors, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
 */
 
-/* Import the CSS from othere files */
-@import "assets/css/header.css";
-@import "assets/css/footer.css";
-@import "assets/css/navigation.css";
-@import "assets/css/comments.css";
-@import "assets/css/social-icons.css";
-/* 
-@import "assets/css/sidebar.css";
-@import "assets/css/content.css";
-@import "assets/css/widgets.css"; 
-*/
-
-/* Fullscreen mode: remove max-width and padding from site content */
-.nrds-fullscreen #site-content {
-    max-width: none !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    width: 100vw !important;
-}
-.nrds-fullscreen #main {
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
-.nrds-fullscreen #left-sidebar.sidebar,
-.nrds-fullscreen #right-sidebar.sidebar {
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
-
-:root {
-    --nrd-navy:        #1d3547;
-    --nrd-navy-dark:   #132634;
-    --nrd-navy-deep:   #0d1b25;
-    --nrd-orange:      #e8641c;
-    --nrd-orange-dark: #c9520f;
-    --nrd-red:         #d62828;
-    --nrd-cream:       #f7f3ee;
-    --nrd-gray-100:    #f4f6f8;
-    --nrd-gray-300:    #d5dce2;
-    --nrd-gray-600:    #5b6b78;
-    --nrd-white:       #ffffff;
-    --nrd-text:        #1d3547;
-    --nrd-black:       #000000;
-
-    --nrd-font-head: "Oswald", "Arial Narrow", sans-serif;
-    --nrd-font-body: "Roboto", Arial, sans-serif;
-
-    --nrd-max:    1200px;
-    --nrd-gutter: 24px;
-    --nrd-radius: 6px;
-    --nrd-shadow: 0 10px 30px rgba(13, 27, 37, .12);
-
-    --nrd-header-shadow: 0 2px 16px rgba(0,0,0,0.07);
-
-    --primary-color: #ff0000; 
-    --secondary-color: #00ff00;     
-    --background-color: #fff;
-    --text-color: #000;
-    --menu-underline-color: #f00;
-    --menu-hover-bg-color: rgba(255, 0, 0, 0.75);
-    --menu-hover-border-color: #f00;
-    --menu-focus-bg-color: rgba(255, 0, 0, 0.2);
-    --content-max-width: 1440px;
-    --content-padding: clamp(1rem, 4vw, 3.5rem);
-    --section-gap: clamp(1.5rem, 4vw, 3.5rem);
-    --card-radius: 1.5rem;
-    --card-shadow: 0 2px 16px rgba(0,0,0,0.07);
-}
+/*
+ * Base styles and page layout. The other stylesheets live in assets/css/ and
+ * are enqueued in order by nrds_theme_scripts() in functions.php:
+ * tokens, this file, header, navigation, button, content, comments,
+ * social-icons, footer, screens.
+ */
 
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: Arial, sans-serif;
+    background-color: var(--nrd-light);
+    color: var(--nrd-dark);
+    font-family: var(--nrd-font-body);
     line-height: 1.6;
     margin: 0;
     min-height: 100vh;
@@ -92,26 +31,54 @@ body {
     box-sizing: border-box;
 }
 
-/* header {
-    background-color: inherit; 
-    color: var(--text-color);
-    display: flex;
-    justify-content: space-between;
-    max-height: 20%;
-    padding: 20px 0;
-    text-align: center;
-} */
+a {
+    color: var(--nrd-primary);
+}
+
+a:hover,
+a:focus {
+    color: var(--nrd-primary-hover);
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Skip link: hidden until focused */
+.skip-link:focus {
+    background: var(--nrd-light);
+    clip: auto;
+    color: var(--nrd-dark);
+    height: auto;
+    left: 8px;
+    padding: 12px 18px;
+    top: 8px;
+    width: auto;
+    z-index: 100000;
+}
+
+/* Width-limited wrapper (header). Full screen lets it span the window. */
+.nrd-container {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: var(--content-max-width);
+    padding: 0 var(--nrd-gutter);
+    width: 100%;
+}
+
+.nrds-fullscreen .nrd-container {
+    max-width: none;
+}
 
 /* Topbar styling and Header styling */
-.nrd-topbar { 
-    height: 6px; 
-    background: var(--nrd-orange); 
+.nrd-topbar {
+    height: 6px;
+    background: var(--nrd-primary);
 }
 
 .nrd-header {
-    background-color: var(--background-color);
-    position: absolute;
-    top: 6px; left: 0; right: 0;
+    background-color: var(--nrd-light);
+    position: relative;
     z-index: 50;
 }
 
@@ -119,35 +86,33 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 24px;
     min-height: 92px;
 }
 
-/* Layout lives on .nrd-header__inner; this block only styles the bar itself */
-/* .nrd-header {
-    background-color: var(--background-color);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-    width: 100%;
-} */
+.nrd-header__widgets {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+}
+
+.nrd-header__widgets .widget-title {
+    font-size: 1rem;
+    margin: 0;
+}
 
 .sticky-header {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     left: 0;
     position: fixed;
     transition: all 0.3s ease-in-out;
     top: 32px;
     width: 100%;
-    z-index: 999; 
+    z-index: 999;
 }
 
 body:not(.admin-bar) .nrd-header.sticky-header {
     top: 0;
-}
-
-
-
-h1 {
-    margin: 0;
 }
 
 /* Navigation styling */
@@ -159,23 +124,9 @@ nav.social-navigation {
     justify-content: flex-end;
 }
 
-/*nav {
-    margin: 20px 0;
-}*/
-
-/* nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
-}
-
-nav a:hover {
-    background: #555;
-} */
-
 /* Basic Navigation Bar Styling */
 #main-navigation {
-    background-color: #fff;
+    background-color: var(--nrd-light);
     padding: 10px 0;
 }
 
@@ -185,15 +136,15 @@ nav a:hover {
     padding: 0;
     display: flex;
     font-size: 1.25rem;
-    justify-content: center; 
+    justify-content: center;
 }
 
 .main-menu li {
-    margin: 0 15px; 
+    margin: 0 15px;
 }
 
 .main-menu li a {
-    color: #000; 
+    color: var(--nrd-dark);
     text-decoration: none;
     padding: 8px 12px;
     display: block;
@@ -203,19 +154,19 @@ nav a:hover {
 .main-menu li a:focus,
 .main-menu li a:active {
     outline: none;
-    background-color: rgba(255, 0, 0, 0.2); 
+    background-color: var(--nrd-surface-alt);
 }
 
 .main-menu li a:hover {
-    background-color: rgba(255, 0, 0, 0.75);
-    border-color: #f00;
+    background-color: var(--nrd-primary);
+    color: var(--nrd-on-primary);
 }
 
 /* Styling for Sub-Menus (if applicable) */
 .main-menu ul.sub-menu {
     display: none;
     position: absolute;
-    background-color: #fff;
+    background-color: var(--nrd-light);
     padding: 10px 0;
     list-style: none;
     min-width: 150px;
@@ -234,7 +185,11 @@ nav a:hover {
     padding: 8px 15px;
 }
 
-/* Layout for Main Content and Sidebar */
+/* ==========================================================================
+   Page layout: content area with optional left and right sidebars.
+   Theme Settings → Layout picks Sized (max width) or Full screen, and which
+   sidebars show (body classes has-left-sidebar / has-right-sidebar).
+   ========================================================================== */
 #site-content {
     display: flex;
     flex-direction: row;
@@ -246,7 +201,7 @@ nav a:hover {
     padding: var(--content-padding);
     box-sizing: border-box;
     gap: var(--section-gap);
-    width: 100vw;
+    width: 100%;
     min-height: 70vh;
 }
 
@@ -255,12 +210,12 @@ nav a:hover {
 #right-sidebar.sidebar {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     width: clamp(180px, 16vw, 260px);
     min-width: 140px;
     max-width: 260px;
-    background-color: #f7f7f7;
+    background-color: var(--nrd-surface-alt);
     border-radius: var(--card-radius);
-    /* box-shadow removed for non-fullscreen */
     padding: 1.5rem 1rem;
     margin: 0;
     box-sizing: border-box;
@@ -269,33 +224,53 @@ nav a:hover {
 
 #main {
     flex-grow: 1;
-    background-color: #fff;
+    background-color: var(--nrd-light);
     border-radius: var(--card-radius);
-    /* box-shadow removed for non-fullscreen */
-    padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 3vw, 2.5rem);
+    padding: clamp(1.5rem, 4vw, 3.5rem) var(--main-padding-x);
     margin: 0;
     min-width: 0;
     box-sizing: border-box;
     min-height: 60vh;
 }
 
+/* Full screen: content spans the window with no outer padding */
+.nrds-fullscreen #site-content {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.nrds-fullscreen #main {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.nrds-fullscreen #left-sidebar.sidebar,
+.nrds-fullscreen #right-sidebar.sidebar {
+    border-radius: 0;
+    box-shadow: none;
+}
+
 .site-branding {
     text-align: center;
-    /* margin-bottom: clamp(1.5rem, 4vw, 3.5rem); */
 }
 
 .site-branding .site-title {
-    font-size: 2.5em;
+    font-family: var(--nrd-font-head);
+    font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.1;
     margin: 0;
+    text-transform: uppercase;
 }
 
 .site-branding .site-title a {
-    color: #000;
+    color: var(--nrd-dark);
     text-decoration: none;
 }
 
 .site-branding .site-title a:hover {
-    text-decoration: underline;
+    color: var(--nrd-primary);
 }
 
 .custom-logo-link img {
@@ -303,39 +278,7 @@ nav a:hover {
     height: auto;
 }
 
-#colophon {
-    background: #222;
-    color: #fff;
-    text-align: center;
-    padding: clamp(1.5rem, 4vw, 3.5rem) 0 1rem 0;
-    margin-top: clamp(1.5rem, 4vw, 3.5rem);
-    border-radius: var(--card-radius) var(--card-radius) 0 0;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
-}
-
-/* Site footer styles */
-footer {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-    width: 100%;
-}
-
-/* Footer columns are styled in assets/css/footer.css */
-
-/* .current_page_item a,
-.current-menu-item a {
-    color: var(--primary-color);
-    font-weight: bold; 
-    font-style: italic; 
-    text-decoration: underline; 
-    border-bottom: 2px solid #f00; 
-} */
-
 /* All the post related styling */
 .post > header {
-    border-bottom: 2px solid var(--primary-color);
-    /* margin-bottom: 20px; */
-    /* padding-bottom: 10px; */
+    border-bottom: 2px solid var(--nrd-primary);
 }

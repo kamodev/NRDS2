@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Design tokens: palette, fonts and spacing.
+
+   The four palette colors (and the shades derived from them) are overridden
+   by the colors chosen in Appearance → Theme Settings → Colors, which
+   functions.php prints right after this file. The defaults are the NRDS logo
+   colors: orange, black and white, plus a charcoal.
+   ========================================================================== */
+
+:root {
+    /* Palette */
+    --nrd-primary:       #ff4c00;
+    --nrd-dark:          #000000;
+    --nrd-secondary:     #333333;
+    --nrd-light:         #ffffff;
+
+    /* Shades derived from the palette (see nrds_palette() in inc/settings.php) */
+    --nrd-primary-hover: #d94100;
+    --nrd-on-primary:    #ffffff;
+    --nrd-text-muted:    #595959;
+    --nrd-border:        #d9d9d9;
+    --nrd-surface-alt:   #f2f2f2;
+    --nrd-on-dark-muted: #bfbfbf;
+
+    /* Older color names used across the theme's stylesheets, mapped to the palette */
+    --nrd-orange:        var(--nrd-primary);
+    --nrd-orange-dark:   var(--nrd-primary-hover);
+    --nrd-red:           var(--nrd-primary);
+    --nrd-navy:          var(--nrd-dark);
+    --nrd-navy-dark:     var(--nrd-dark);
+    --nrd-navy-deep:     var(--nrd-dark);
+    --nrd-cream:         var(--nrd-surface-alt);
+    --nrd-gray-100:      var(--nrd-surface-alt);
+    --nrd-gray-300:      var(--nrd-border);
+    --nrd-gray-600:      var(--nrd-text-muted);
+    --nrd-white:         var(--nrd-light);
+    --nrd-black:         var(--nrd-dark);
+    --nrd-text:          var(--nrd-dark);
+    --primary-color:     var(--nrd-primary);
+    --secondary-color:   var(--nrd-secondary);
+    --background-color:  var(--nrd-light);
+    --text-color:        var(--nrd-dark);
+
+    /* Fonts (loaded from Google Fonts in functions.php) */
+    --nrd-font-head: "Oswald", "Arial Narrow", sans-serif;
+    --nrd-font-body: "Roboto", Arial, sans-serif;
+
+    /* Sizing. --content-max-width is set from Theme Settings → Layout. */
+    --content-max-width: 1440px;
+    --content-padding: clamp(1rem, 4vw, 3.5rem);
+    --main-padding-x: clamp(1rem, 3vw, 2.5rem);
+    --section-gap: clamp(1.5rem, 4vw, 3.5rem);
+    --nrd-gutter: 24px;
+    --nrd-radius: 6px;
+    --card-radius: 1.5rem;
+    --card-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+    --nrd-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+    --nrd-header-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+}

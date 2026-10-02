@@ -68,6 +68,39 @@
     }
 }
 
+/* The primary menu (#primary-menu) collapses behind the toggle button;
+   assets/js/script.js adds .open */
+@media (max-width: 768px) {
+    .nrd-nav #primary-menu {
+        background: var(--nrd-light);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        flex-direction: column;
+        gap: 0;
+        left: 0;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        transform: translateY(-8px);
+        transition: max-height 360ms cubic-bezier(.2,.8,.2,1), opacity 240ms ease, transform 240ms ease;
+        visibility: hidden;
+        z-index: 999;
+    }
+    .nrd-nav #primary-menu.open {
+        max-height: 1000px;
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+    .nrd-nav #primary-menu a {
+        border-bottom: 1px solid var(--nrd-border);
+        display: block;
+        padding: 14px var(--nrd-gutter);
+    }
+}
+
 @media (min-width: 769px) {
     .main-menu {
         display: flex !important;
@@ -80,23 +113,31 @@
 
 /* ---------- Footer (from assets/css/footer.css) ---------- */
 
+/* Four columns become two... */
 @media (max-width: 900px) {
-    footer .footer-widgets-area.footer-columns-4,
-    footer .footer-widgets-area.footer-columns-3 {
+    .nrds-footer__grid--4,
+    .nrds-footer__grid--3,
+    .nrds-footer__grid--4.has-brand,
+    .nrds-footer__grid--3.has-brand {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-}
-
-@media (max-width: 600px) {
-    footer .footer-widgets-area.footer-columns-4,
-    footer .footer-widgets-area.footer-columns-3,
-    footer .footer-widgets-area.footer-columns-2 {
-        grid-template-columns: minmax(0, 1fr);
+    /* ...with the brand block across the top row when there are three columns */
+    .nrds-footer__grid--3.has-brand .nrds-footer__col--1 {
+        grid-column: 1 / -1;
     }
 }
 
+/* ...then one */
 @media (max-width: 600px) {
-    footer .footer-secondary {
+    .nrds-footer__grid--4,
+    .nrds-footer__grid--3,
+    .nrds-footer__grid--2,
+    .nrds-footer__grid--4.has-brand,
+    .nrds-footer__grid--3.has-brand,
+    .nrds-footer__grid--2.has-brand {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .nrds-footer__bottom .nrds-footer__container {
         flex-direction: column;
         text-align: center;
     }
@@ -121,7 +162,9 @@
         /* box-shadow removed for non-fullscreen */
     }
     #main {
-        padding: 1.5rem 0.5rem;
+        --main-padding-x: 0.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
         min-height: 40vh;
     }
 }
@@ -132,10 +175,8 @@
         gap: 1rem;
     }
     #main {
-        padding: 1rem 0.25rem;
-    }
-    #colophon {
-        padding: 1.2rem 0 0.5rem 0;
-        margin-top: 1.2rem;
+        --main-padding-x: 0.25rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
 }
