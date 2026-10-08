@@ -116,7 +116,7 @@ p.demo_store {
 	text-transform: uppercase;
 	color: var(--nrd-text-muted);
 }
-.woocommerce .woocommerce-breadcrumb a { color: var(--nrd-secondary); text-decoration: none; }
+.woocommerce .woocommerce-breadcrumb a { color: var(--nrd-text-muted); text-decoration: none; }
 .woocommerce .woocommerce-breadcrumb a:hover { color: var(--nrd-primary); }
 
 .woocommerce-products-header__title.page-title { margin-bottom: .25em; }
@@ -420,7 +420,7 @@ p.no-comments {
 
 
 /* ==========================================================================
-   Store titles and breadcrumbs in the theme style
+   Store titles in the theme style
    ========================================================================== */
 .woocommerce-products-header {
 	border-bottom: 3px solid var(--nrd-primary);
@@ -431,10 +431,6 @@ p.no-comments {
 .woocommerce-products-header .page-title,
 .woocommerce div.product .product_title {
 	text-transform: uppercase;
-}
-
-.woocommerce .woocommerce-breadcrumb a {
-	color: var(--nrd-text-muted);
 }
 
 /* Cart, checkout and account pages run full width; keep long forms readable. */

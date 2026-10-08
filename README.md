@@ -25,7 +25,15 @@ A custom WordPress theme for National Readiness & Defense: color themes, a sized
   - Single posts and pages can override the sidebars in the **Sidebars** box on their edit screen. The **Full Width (no sidebars)** page template never shows them.
   - *Post header image*: show or hide the featured image banner on single posts.
 - **Colors**: a four-color palette (Primary, Dark, Secondary, Light). The defaults are the logo colors: orange `#ff4c00`, black, charcoal `#333333` and white. Color themes fill in all four colors at once (NRDS Blaze, Navy & Orange, Signal Red, Field Olive, Woodland, Desert Tan); every theme keeps white as the light color. The screen shows a live preview and checks the text contrast of each combination. The palette also becomes the block editor's color palette.
-- **Footer**: brand column on/off, about text, social links (Facebook, Instagram, X, YouTube, LinkedIn, email), a disclaimer band and the copyright line (`{year}` is replaced with the current year).
+- **Footer**: brand column on/off, footer logo, about text, social links (Facebook, Instagram, X, YouTube, LinkedIn, email), a disclaimer band and the copyright line (`{year}` is replaced with the current year).
+  - *Footer logo*: upload a **light version** (for dark backgrounds) and a **dark version** (for light backgrounds) from the Media Library, then choose what the footer shows: **Automatic** (the light version on a dark footer, the dark version on a light one, judged from the palette's Dark color), either version, the header's site logo, the site name as text, or **Off**. Off hides only the logo; the about text and social icons stay. If the version needed hasn't been uploaded, the footer falls back to the site logo, then the site name.
+
+### Primary menu
+
+- Menu items with sub-items get dropdowns. On wide screens a submenu opens as a panel below its item when it is hovered, reached with the keyboard (Tab), or its chevron is clicked or tapped; a third level flies out to the side. Escape or a click elsewhere closes it, and a panel that would run off the right edge of the window opens leftward instead.
+- Up to 900px wide (phones and portrait tablets) the menu collapses behind the ☰ button, and each submenu opens as a collapsible section with its chevron.
+- Between 901px and 1180px the menu tightens its spacing so the logo, menu and header icons fit on one row.
+- Build the dropdowns under **Appearance > Menus** by dragging items under another item.
 
 ### Footer
 
@@ -66,9 +74,9 @@ Everything below turns on when the WooCommerce plugin is active; without it the 
 
 - Templates: `header.php`, `footer.php`, `index.php` (blog, archives, search), `front-page.php`, `page.php`, `single.php`, `404.php`, `comments.php`, `searchform.php`, `page-full-width.php`, `sidebar-left.php`, `sidebar-right.php`
 - Template parts: `template-parts/header/`, `template-parts/footer/`, `template-parts/content*.php`
-- PHP helpers: `inc/` (`settings.php`, `layout.php`, `template-tags.php`, `icons.php`, `admin-settings.php`) and `inc/woocommerce/` (store support, loaded only when WooCommerce is active)
+- PHP helpers: `inc/` (`settings.php`, `layout.php`, `template-tags.php`, `navigation.php`, `icons.php`, `admin-settings.php`) and `inc/woocommerce/` (store support, loaded only when WooCommerce is active)
 - Stylesheets are enqueued in order by `nrds_theme_scripts()` in `functions.php`; `screens.css` holds all breakpoints and loads last.
-- Scripts: `assets/js/script.js` (sticky header, mobile menu), `assets/js/admin-settings.js` (Theme Settings screen)
+- Scripts: `assets/js/script.js` (sticky header, mobile menu, dropdown submenus), `assets/js/admin-settings.js` (Theme Settings screen)
 - `nrds-site/` is a static HTML mockup of the design; it isn't part of the theme zip.
 
 ### Support

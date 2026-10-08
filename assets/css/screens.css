@@ -31,8 +31,8 @@
 }
 
 /* Hide the main menu on small screens and show when toggled (animated)
-   Breakpoint: 768px for tablets/phones */
-@media (max-width: 768px) {
+   Breakpoint: 900px for tablets/phones (also in assets/js/script.js) */
+@media (max-width: 900px) {
     .menu-toggle {
         display: inline-block;
     }
@@ -70,8 +70,9 @@
 
 /* The primary menu (#primary-menu) collapses behind the toggle button;
    assets/js/script.js adds .open */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .nrd-nav #primary-menu {
+        align-items: stretch;
         background: var(--nrd-light);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
         flex-direction: column;
@@ -89,8 +90,9 @@
         z-index: 999;
     }
     .nrd-nav #primary-menu.open {
-        max-height: 1000px;
+        max-height: calc(100vh - 110px);
         opacity: 1;
+        overflow-y: auto;
         transform: translateY(0);
         visibility: visible;
     }
@@ -99,9 +101,95 @@
         display: block;
         padding: 14px var(--nrd-gutter);
     }
+
+    /* Submenus open as collapsible sections under their item: the link and
+       its toggle share a row, the submenu spans the row below */
+    .nrd-nav #primary-menu li {
+        display: block;
+        position: relative;
+    }
+    .nrd-nav #primary-menu .menu-item-has-children {
+        align-items: stretch;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 56px;
+    }
+    .nrd-nav #primary-menu .submenu-toggle {
+        border-bottom: 1px solid var(--nrd-border);
+        border-left: 1px solid var(--nrd-border);
+        border-radius: 0;
+        height: auto;
+        margin: 0;
+        width: 56px;
+    }
+    .nrd-nav #primary-menu .submenu-toggle svg,
+    .nrd-nav #primary-menu li:hover > .submenu-toggle svg {
+        height: 20px;
+        transform: none;
+        width: 20px;
+    }
+    .nrd-nav #primary-menu li.submenu-open > .submenu-toggle svg {
+        transform: rotate(180deg);
+    }
+    .nrd-nav #primary-menu :is(.sub-menu, .children) {
+        background: var(--nrd-surface-alt);
+        border-top: 0;
+        box-shadow: none;
+        display: none;
+        grid-column: 1 / -1;
+        min-width: 0;
+        opacity: 1;
+        padding: 0;
+        position: static;
+        transform: none;
+        visibility: visible;
+    }
+    .nrd-nav #primary-menu :is(.sub-menu, .children)::before {
+        display: none;
+    }
+    .nrd-nav #primary-menu :is(.sub-menu, .children) li,
+    .nrd-nav #primary-menu :is(.sub-menu, .children) :is(.sub-menu, .children) {
+        background: transparent;
+    }
+    /* The page-list fallback menu has no toggles, so its submenus stay open */
+    .nrd-nav #primary-menu li.submenu-open > .sub-menu,
+    .nrd-nav #primary-menu .children {
+        display: block;
+    }
+    .nrd-nav #primary-menu :is(.sub-menu, .children) a {
+        border-left: 0;
+        font-size: 1.05rem;
+        padding-left: calc(var(--nrd-gutter) + 18px);
+    }
+    .nrd-nav #primary-menu :is(.sub-menu, .children) :is(.sub-menu, .children) a {
+        padding-left: calc(var(--nrd-gutter) + 36px);
+    }
 }
 
-@media (min-width: 769px) {
+/* Between tablet and laptop widths the full menu gets tighter so the logo,
+   menu and header icons fit on one row */
+@media (min-width: 901px) and (max-width: 1180px) {
+    .nrd-header__inner {
+        gap: 16px;
+    }
+    .nrd-nav {
+        margin-right: 0;
+    }
+    .nrd-nav > ul {
+        gap: 14px;
+    }
+    .nrd-nav > ul > li > a {
+        font-size: 1.05rem;
+        letter-spacing: .03em;
+    }
+    .site-branding .site-title {
+        font-size: 1.3rem;
+    }
+    .custom-logo-link img {
+        max-width: 160px;
+    }
+}
+
+@media (min-width: 901px) {
     .main-menu {
         display: flex !important;
         position: static;

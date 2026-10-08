@@ -3,8 +3,9 @@
  * Site footer: newsletter band, four columns, disclaimer and bottom bar.
  *
  * Each of the four columns can hold, in this order:
- *   1. The brand block (column 1 only): logo, about text and social icons,
- *      when turned on in Appearance → Theme Settings → Footer
+ *   1. The brand block (column 1 only): the footer logo (light or dark
+ *      version, the site logo, the site name, or none), about text and social
+ *      icons, when turned on in Appearance → Theme Settings → Footer
  *   2. A menu assigned to the "Footer Column N" menu location
  *   3. Widgets in the "Footer Column N" widget area (text, custom HTML,
  *      blocks, navigation menus, etc.)
@@ -36,7 +37,7 @@ $nrds_disclaimer = nrds_setting( 'footer_disclaimer' );
 					<div class="nrds-footer__col nrds-footer__col--<?php echo (int) $nrds_i; ?>">
 						<?php if ( $nrds_column['brand'] ) : ?>
 							<div class="nrds-footer__brand">
-								<?php nrds_site_brand( 'p' ); ?>
+								<?php nrds_footer_logo(); ?>
 								<?php if ( nrds_setting( 'footer_about' ) ) : ?>
 									<p class="nrds-footer__about"><?php echo nl2br( esc_html( nrds_setting( 'footer_about' ) ) ); ?></p>
 								<?php endif; ?>

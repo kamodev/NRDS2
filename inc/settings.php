@@ -148,6 +148,17 @@ function nrds_choice_fields() {
 		),
 		'post_header_image' => array( $show_hide, 'show' ),
 		'footer_brand'      => array( $show_hide, 'show' ),
+		'footer_logo'       => array(
+			array(
+				'auto'  => __( 'Automatic (the version that suits the footer color)', 'nrds-theme' ),
+				'light' => __( 'Light version', 'nrds-theme' ),
+				'dark'  => __( 'Dark version', 'nrds-theme' ),
+				'site'  => __( 'Site logo (same as the header)', 'nrds-theme' ),
+				'title' => __( 'Site name as text', 'nrds-theme' ),
+				'none'  => __( 'Off (no logo)', 'nrds-theme' ),
+			),
+			'auto',
+		),
 	);
 
 	$defaults = nrds_sidebar_defaults();
@@ -180,6 +191,18 @@ function nrds_text_fields() {
 }
 
 /**
+ * Image settings, stored as Media Library attachment IDs: key => label, help text.
+ *
+ * @return array
+ */
+function nrds_image_fields() {
+	return array(
+		'footer_logo_light' => array( __( 'Light version', 'nrds-theme' ), __( 'For dark backgrounds, such as the default black footer: a white or light-colored logo.', 'nrds-theme' ) ),
+		'footer_logo_dark'  => array( __( 'Dark version', 'nrds-theme' ), __( 'For light backgrounds, if the footer color is changed to a light one: a black or dark-colored logo.', 'nrds-theme' ) ),
+	);
+}
+
+/**
  * Content width limits for the sized layout, in pixels.
  *
  * @return array min, max, default
@@ -203,6 +226,9 @@ function nrds_setting_defaults() {
 	}
 	foreach ( nrds_text_fields() as $key => $field ) {
 		$defaults[ $key ] = $field[1];
+	}
+	foreach ( nrds_image_fields() as $key => $field ) {
+		$defaults[ $key ] = 0;
 	}
 	$range                     = nrds_content_width_range();
 	$defaults['content_width'] = $range[2];
@@ -309,6 +335,13 @@ function nrds_sanitize_settings( $input, $existing ) {
 		}
 	}
 
+	foreach ( nrds_image_fields() as $key => $field ) {
+		$value = absint( $pick( $key ) );
+		if ( $value && wp_attachment_is_image( $value ) ) {
+			$out[ $key ] = $value;
+		}
+	}
+
 	$width = $pick( 'content_width' );
 	if ( '' !== $width ) {
 		list( $min, $max ) = nrds_content_width_range();
@@ -384,6 +417,25 @@ function nrds_mix_colors( $from, $to, $amount ) {
 		$out .= sprintf( '%02x', (int) round( $a[ $i ] + ( $b[ $i ] - $a[ $i ] ) * $amount ) );
 	}
 	return $out;
+}
+
+/**
+ * Whether a color is dark, meaning white text or a light logo reads better on
+ * it than black (WCAG relative luminance below 0.179, where the contrast with
+ * black and with white is equal).
+ *
+ * @param string $hex Hex color.
+ * @return bool
+ */
+function nrds_is_dark_color( $hex ) {
+	$channels = array_map(
+		function ( $v ) {
+			$v /= 255;
+			return $v <= 0.03928 ? $v / 12.92 : pow( ( $v + 0.055 ) / 1.055, 2.4 );
+		},
+		nrds_hex_to_rgb( $hex )
+	);
+	return ( 0.2126 * $channels[0] + 0.7152 * $channels[1] + 0.0722 * $channels[2] ) < 0.179;
 }
 
 /**
