@@ -14,5 +14,5 @@ if ( empty( $nrds_sidebars['left'] ) ) {
 }
 ?>
 <aside id="left-sidebar" class="sidebar sidebar--left" aria-label="<?php esc_attr_e( 'Left sidebar', 'nrds-theme' ); ?>">
-	<?php dynamic_sidebar( 'left-sidebar' ); ?>
+	<?php dynamic_sidebar( $nrds_sidebars['left'] ); ?>
 </aside>

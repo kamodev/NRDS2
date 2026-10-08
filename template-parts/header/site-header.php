@@ -29,6 +29,17 @@
 			?>
 		</nav>
 
+		<?php if ( has_action( 'nrds_header_actions' ) ) : ?>
+			<div class="nrd-header__actions">
+				<?php
+				/**
+				 * Header icons after the menu (the WooCommerce integration adds account and cart).
+				 */
+				do_action( 'nrds_header_actions' );
+				?>
+			</div>
+		<?php endif; ?>
+
 		<?php if ( is_active_sidebar( 'header-widget-area' ) ) : ?>
 			<div class="nrd-header__widgets">
 				<?php dynamic_sidebar( 'header-widget-area' ); ?>

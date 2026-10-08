@@ -100,11 +100,30 @@ function nrds_color_presets() {
  * @return array
  */
 function nrds_sidebar_contexts() {
-	return array(
-		'front'   => __( 'Front page', 'nrds-theme' ),
-		'post'    => __( 'Posts', 'nrds-theme' ),
-		'page'    => __( 'Pages', 'nrds-theme' ),
-		'archive' => __( 'Blog, archives & search', 'nrds-theme' ),
+	return apply_filters(
+		'nrds_sidebar_contexts',
+		array(
+			'front'   => __( 'Front page', 'nrds-theme' ),
+			'post'    => __( 'Posts', 'nrds-theme' ),
+			'page'    => __( 'Pages', 'nrds-theme' ),
+			'archive' => __( 'Blog, archives & search', 'nrds-theme' ),
+		)
+	);
+}
+
+/**
+ * Default sidebar switches for each context: context => [left, right].
+ * Contexts not listed show both sidebars.
+ *
+ * @return array
+ */
+function nrds_sidebar_defaults() {
+	return apply_filters(
+		'nrds_sidebar_defaults',
+		array(
+			// The front page starts without sidebars so full-width layouts aren't squeezed.
+			'front' => array( 'hide', 'hide' ),
+		)
 	);
 }
 
@@ -131,11 +150,11 @@ function nrds_choice_fields() {
 		'footer_brand'      => array( $show_hide, 'show' ),
 	);
 
-	// The front page starts without sidebars so full-width layouts aren't squeezed.
+	$defaults = nrds_sidebar_defaults();
 	foreach ( nrds_sidebar_contexts() as $context => $label ) {
-		$default                                 = 'front' === $context ? 'hide' : 'show';
-		$fields[ $context . '_left_sidebar' ]  = array( $show_hide, $default );
-		$fields[ $context . '_right_sidebar' ] = array( $show_hide, $default );
+		$default                               = isset( $defaults[ $context ] ) ? $defaults[ $context ] : array( 'show', 'show' );
+		$fields[ $context . '_left_sidebar' ]  = array( $show_hide, $default[0] );
+		$fields[ $context . '_right_sidebar' ] = array( $show_hide, $default[1] );
 	}
 
 	return $fields;
