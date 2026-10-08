@@ -149,8 +149,52 @@
 		update();
 	}
 
+	// Media Library pickers for the footer logo versions.
+	function initImageFields() {
+		$( '.nrds-image-field' ).each( function () {
+			var $field = $( this );
+			var $input = $field.find( '.nrds-image-field__id' );
+			var $img = $field.find( '.nrds-image-field__preview img' );
+			var $empty = $field.find( '.nrds-image-field__empty' );
+			var $select = $field.find( '.nrds-image-field__select' );
+			var $remove = $field.find( '.nrds-image-field__remove' );
+			var frame = null;
+
+			function show( id, url ) {
+				$input.val( id || '' );
+				$img.attr( 'src', url || '' ).prop( 'hidden', ! url );
+				$empty.prop( 'hidden', !! url );
+				$remove.prop( 'hidden', ! id );
+				$select.text( id ? ( i18n.replace || 'Replace' ) : ( i18n.pick || 'Choose logo' ) );
+			}
+
+			$select.on( 'click', function () {
+				if ( ! frame ) {
+					frame = wp.media( {
+						title: i18n.pick,
+						button: { text: i18n.use },
+						library: { type: 'image' },
+						multiple: false,
+					} );
+					frame.on( 'select', function () {
+						var image = frame.state().get( 'selection' ).first().toJSON();
+						var sized = image.sizes && image.sizes.medium ? image.sizes.medium.url : image.url;
+						show( image.id, sized );
+					} );
+				}
+				frame.open();
+			} );
+
+			$remove.on( 'click', function () {
+				show( '', '' );
+				$select.trigger( 'focus' );
+			} );
+		} );
+	}
+
 	$( function () {
 		initWidth();
+		initImageFields();
 		$( '.nrds-colors' ).each( function () {
 			initColors( $( this ) );
 		} );

@@ -29,6 +29,76 @@ function nrds_site_brand( $title_tag = 'p' ) {
 }
 
 /**
+ * Footer logo that applies, after resolving "Automatic" and fallbacks.
+ *
+ * Automatic picks the light version on a dark footer and the dark version on
+ * a light one (the footer background is the palette's Dark color). When the
+ * chosen version hasn't been uploaded, the site logo is used, then the site
+ * name as text.
+ *
+ * @return array { mode: 'image'|'title'|'none', id: int attachment ID for 'image' }
+ */
+function nrds_footer_logo_choice() {
+	$mode = nrds_setting( 'footer_logo' );
+
+	if ( 'none' === $mode || 'title' === $mode ) {
+		return array( 'mode' => $mode, 'id' => 0 );
+	}
+	if ( 'auto' === $mode ) {
+		$palette = nrds_palette();
+		$mode    = nrds_is_dark_color( $palette['--nrd-dark'] ) ? 'light' : 'dark';
+	}
+
+	$id = 0;
+	if ( 'light' === $mode || 'dark' === $mode ) {
+		$id = absint( nrds_setting( 'footer_logo_' . $mode ) );
+	}
+	if ( ! $id || ! wp_attachment_is_image( $id ) ) {
+		$id = has_custom_logo() ? absint( get_theme_mod( 'custom_logo' ) ) : 0;
+	}
+
+	return $id ? array( 'mode' => 'image', 'id' => $id ) : array( 'mode' => 'title', 'id' => 0 );
+}
+
+/**
+ * Footer logo, the site name as text, or nothing (Theme Settings → Footer).
+ */
+function nrds_footer_logo() {
+	$logo = nrds_footer_logo_choice();
+
+	if ( 'image' === $logo['mode'] ) {
+		printf(
+			'<a href="%1$s" class="custom-logo-link nrds-footer__logo" rel="home">%2$s</a>',
+			esc_url( home_url( '/' ) ),
+			wp_get_attachment_image( $logo['id'], 'full', false, array( 'class' => 'custom-logo', 'alt' => get_bloginfo( 'name', 'display' ) ) )
+		);
+	} elseif ( 'title' === $logo['mode'] ) {
+		printf( '<p class="site-title"><a href="%1$s" rel="home">%2$s</a></p>', esc_url( home_url( '/' ) ), esc_html( get_bloginfo( 'name' ) ) );
+	}
+}
+
+/**
+ * Whether the footer brand block is turned on and has something to show
+ * (a logo or site name, the about text, or a social link).
+ *
+ * @return bool
+ */
+function nrds_footer_brand_has_content() {
+	if ( 'show' !== nrds_setting( 'footer_brand' ) ) {
+		return false;
+	}
+	if ( 'none' !== nrds_footer_logo_choice()['mode'] || nrds_setting( 'footer_about' ) ) {
+		return true;
+	}
+	foreach ( array( 'facebook', 'instagram', 'x', 'youtube', 'linkedin', 'email' ) as $network ) {
+		if ( nrds_setting( 'social_' . $network ) ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
  * Date, author and categories for a post.
  */
 function nrds_posted_on() {
@@ -151,7 +221,7 @@ function nrds_copyright_text() {
  * A column shows when it has a menu in its "Footer Column N" location,
  * widgets in its "Footer Column N" area, or a callback on the
  * nrds_footer_column_N action. Column 1 also shows the brand block when it
- * is turned on in Theme Settings → Footer.
+ * is turned on in Theme Settings → Footer and has something to show.
  *
  * @return array column number => { brand, menu_location, sidebar_id, action }
  */
@@ -159,7 +229,7 @@ function nrds_footer_columns() {
 	$columns = array();
 	for ( $i = 1; $i <= 4; $i++ ) {
 		$column = array(
-			'brand'         => 1 === $i && 'show' === nrds_setting( 'footer_brand' ),
+			'brand'         => 1 === $i && nrds_footer_brand_has_content(),
 			'menu_location' => 'footer-column-' . $i,
 			'sidebar_id'    => 'footer-widget-' . $i,
 			'action'        => 'nrds_footer_column_' . $i,

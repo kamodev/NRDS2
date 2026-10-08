@@ -45,15 +45,19 @@ function nrds_settings_assets( $hook ) {
 		return;
 	}
 	wp_enqueue_style( 'wp-color-picker' );
+	wp_enqueue_media();
 	wp_enqueue_style( 'nrds-admin-settings', NRDS_URI . '/assets/css/admin/settings.css', array( 'wp-color-picker' ), NRDS_VERSION );
 	wp_enqueue_script( 'nrds-admin-settings', NRDS_URI . '/assets/js/admin-settings.js', array( 'jquery', 'wp-color-picker' ), NRDS_VERSION, true );
 	wp_localize_script(
 		'nrds-admin-settings',
 		'nrdsSettings',
 		array(
-			'ok'    => __( 'Readable', 'nrds-theme' ),
-			'large' => __( 'OK for large or bold text such as buttons and headings; too low for body text.', 'nrds-theme' ),
-			'low'   => __( 'Low contrast: hard to read for many people.', 'nrds-theme' ),
+			'ok'      => __( 'Readable', 'nrds-theme' ),
+			'large'   => __( 'OK for large or bold text such as buttons and headings; too low for body text.', 'nrds-theme' ),
+			'low'     => __( 'Low contrast: hard to read for many people.', 'nrds-theme' ),
+			'pick'    => __( 'Choose logo', 'nrds-theme' ),
+			'use'     => __( 'Use this logo', 'nrds-theme' ),
+			'replace' => __( 'Replace', 'nrds-theme' ),
 		)
 	);
 }
@@ -289,6 +293,33 @@ function nrds_render_colors_tab( $values ) {
 }
 
 /**
+ * A Media Library image picker for one image setting.
+ *
+ * @param string $key        Setting key.
+ * @param array  $values     Saved values.
+ * @param string $background Preview background color, so the logo shows on
+ *                           the kind of background it is meant for.
+ */
+function nrds_render_image_field( $key, $values, $background ) {
+	$fields = nrds_image_fields();
+	$id     = isset( $values[ $key ] ) ? absint( $values[ $key ] ) : 0;
+	$url    = $id ? wp_get_attachment_image_url( $id, 'medium' ) : '';
+	$id     = $url ? $id : 0;
+	?>
+	<div class="nrds-image-field">
+		<div class="nrds-image-field__preview" style="background-color:<?php echo esc_attr( $background ); ?>">
+			<img src="<?php echo esc_url( $url ); ?>" alt=""<?php echo $url ? '' : ' hidden'; ?>>
+			<span class="nrds-image-field__empty"<?php echo $url ? ' hidden' : ''; ?>><?php esc_html_e( 'No logo chosen', 'nrds-theme' ); ?></span>
+		</div>
+		<input type="hidden" class="nrds-image-field__id" name="nrds_theme_settings_options[<?php echo esc_attr( $key ); ?>]" value="<?php echo $id ? esc_attr( $id ) : ''; ?>">
+		<button type="button" class="button nrds-image-field__select" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: logo version, e.g. "Light version". */ __( 'Choose %s', 'nrds-theme' ), $fields[ $key ][0] ) ); ?>"><?php echo $id ? esc_html__( 'Replace', 'nrds-theme' ) : esc_html__( 'Choose logo', 'nrds-theme' ); ?></button>
+		<button type="button" class="button-link button-link-delete nrds-image-field__remove"<?php echo $id ? '' : ' hidden'; ?>><?php esc_html_e( 'Remove', 'nrds-theme' ); ?></button>
+		<p class="description"><?php echo esc_html( $fields[ $key ][1] ); ?></p>
+	</div>
+	<?php
+}
+
+/**
  * Footer tab: brand column, social links, disclaimer and copyright.
  *
  * @param array $values Saved values.
@@ -317,8 +348,36 @@ function nrds_render_footer_tab( $values ) {
 				<th scope="row"><?php esc_html_e( 'Logo, about text and social icons', 'nrds-theme' ); ?></th>
 				<td>
 					<?php nrds_render_choice_field( 'footer_brand', $values, __( 'Brand column', 'nrds-theme' ), false ); ?>
-					<p class="description"><?php esc_html_e( 'Shown at the top of footer column 1. Uses the site logo (Appearance → Customize → Site Identity), or the site title when there is no logo.', 'nrds-theme' ); ?></p>
+					<p class="description"><?php esc_html_e( 'Shown at the top of footer column 1.', 'nrds-theme' ); ?></p>
 				</td>
+			</tr>
+			<tr>
+				<th scope="row"><label for="nrds-footer-logo"><?php esc_html_e( 'Footer logo', 'nrds-theme' ); ?></label></th>
+				<td>
+					<?php nrds_render_choice_field( 'footer_logo', $values, __( 'Footer logo', 'nrds-theme' ), false ); ?>
+					<p class="description">
+						<?php
+						$palette = nrds_palette();
+						$is_dark = nrds_is_dark_color( $palette['--nrd-dark'] );
+						echo esc_html(
+							$is_dark
+								/* translators: %s: footer background color hex. */
+								? sprintf( __( 'The footer background (%s, the palette\'s Dark color) is dark, so Automatic uses the light version.', 'nrds-theme' ), $palette['--nrd-dark'] )
+								/* translators: %s: footer background color hex. */
+								: sprintf( __( 'The footer background (%s, the palette\'s Dark color) is light, so Automatic uses the dark version.', 'nrds-theme' ), $palette['--nrd-dark'] )
+						);
+						echo ' ' . esc_html__( 'If the version used hasn\'t been uploaded, the footer shows the site logo (Appearance → Customize → Site Identity), or the site name when there is no logo. Off hides the logo but keeps the about text and social icons.', 'nrds-theme' );
+						?>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php esc_html_e( 'Light version', 'nrds-theme' ); ?></th>
+				<td><?php nrds_render_image_field( 'footer_logo_light', $values, $is_dark ? $palette['--nrd-dark'] : '#1a1a1a' ); ?></td>
+			</tr>
+			<tr>
+				<th scope="row"><?php esc_html_e( 'Dark version', 'nrds-theme' ); ?></th>
+				<td><?php nrds_render_image_field( 'footer_logo_dark', $values, $is_dark ? '#ffffff' : $palette['--nrd-dark'] ); ?></td>
 			</tr>
 			<tr>
 				<th scope="row"><label for="nrds-footer-about"><?php echo esc_html( $text['footer_about'][0] ); ?></label></th>

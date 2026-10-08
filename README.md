@@ -25,7 +25,8 @@ A custom WordPress theme for National Readiness & Defense: color themes, a sized
   - Single posts and pages can override the sidebars in the **Sidebars** box on their edit screen. The **Full Width (no sidebars)** page template never shows them.
   - *Post header image*: show or hide the featured image banner on single posts.
 - **Colors**: a four-color palette (Primary, Dark, Secondary, Light). The defaults are the logo colors: orange `#ff4c00`, black, charcoal `#333333` and white. Color themes fill in all four colors at once (NRDS Blaze, Navy & Orange, Signal Red, Field Olive, Woodland, Desert Tan); every theme keeps white as the light color. The screen shows a live preview and checks the text contrast of each combination. The palette also becomes the block editor's color palette.
-- **Footer**: brand column on/off, about text, social links (Facebook, Instagram, X, YouTube, LinkedIn, email), a disclaimer band and the copyright line (`{year}` is replaced with the current year).
+- **Footer**: brand column on/off, footer logo, about text, social links (Facebook, Instagram, X, YouTube, LinkedIn, email), a disclaimer band and the copyright line (`{year}` is replaced with the current year).
+  - *Footer logo*: upload a **light version** (for dark backgrounds) and a **dark version** (for light backgrounds) from the Media Library, then choose what the footer shows: **Automatic** (the light version on a dark footer, the dark version on a light one, judged from the palette's Dark color), either version, the header's site logo, the site name as text, or **Off**. Off hides only the logo; the about text and social icons stay. If the version needed hasn't been uploaded, the footer falls back to the site logo, then the site name.
 
 ### Footer
 
