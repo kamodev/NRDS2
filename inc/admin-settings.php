@@ -149,9 +149,11 @@ function nrds_render_layout_tab( $values ) {
 	<p class="description">
 		<?php
 		$empty = array();
-		foreach ( nrds_sidebar_areas() as $area ) {
-			if ( ! is_active_sidebar( $area ) && isset( $GLOBALS['wp_registered_sidebars'][ $area ] ) ) {
-				$empty[] = $GLOBALS['wp_registered_sidebars'][ $area ]['name'];
+		foreach ( array_keys( nrds_sidebar_contexts() ) as $context ) {
+			foreach ( nrds_sidebar_areas( $context ) as $area ) {
+				if ( ! is_active_sidebar( $area ) && isset( $GLOBALS['wp_registered_sidebars'][ $area ] ) ) {
+					$empty[ $area ] = $GLOBALS['wp_registered_sidebars'][ $area ]['name'];
+				}
 			}
 		}
 		esc_html_e( 'A sidebar only appears when its widget area has widgets.', 'nrds-theme' );
@@ -383,6 +385,9 @@ function nrds_render_settings_page() {
 		'colors' => __( 'Colors', 'nrds-theme' ),
 		'footer' => __( 'Footer', 'nrds-theme' ),
 	);
+	if ( function_exists( 'nrds_render_store_tab' ) ) {
+		$tabs['store'] = __( 'Store', 'nrds-theme' );
+	}
 	$tab    = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'layout'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	$tab    = array_key_exists( $tab, $tabs ) ? $tab : 'layout';
 	$values = nrds_site_settings();
@@ -397,6 +402,9 @@ function nrds_render_settings_page() {
 			<?php endforeach; ?>
 		</nav>
 
+		<?php if ( 'store' === $tab ) : ?>
+			<?php nrds_render_store_tab(); ?>
+		<?php else : ?>
 		<form method="post" action="options.php">
 			<?php
 			settings_fields( 'nrds_theme_settings' );
@@ -413,6 +421,7 @@ function nrds_render_settings_page() {
 			submit_button();
 			?>
 		</form>
+		<?php endif; ?>
 	</div>
 	<?php
 }

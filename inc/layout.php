@@ -17,12 +17,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Widget area for each side.
  *
+ * @param string|null $context Sidebar context (the WooCommerce integration
+ *                             gives shop pages their own left area).
  * @return array side => sidebar ID
  */
-function nrds_sidebar_areas() {
-	return array(
-		'left'  => 'left-sidebar',
-		'right' => 'right-sidebar',
+function nrds_sidebar_areas( $context = null ) {
+	return apply_filters(
+		'nrds_sidebar_areas',
+		array(
+			'left'  => 'left-sidebar',
+			'right' => 'right-sidebar',
+		),
+		$context
 	);
 }
 
@@ -72,7 +78,8 @@ function nrds_sidebar_overrides() {
 /**
  * Which sidebars show on the current view.
  *
- * @return array { left: bool, right: bool }
+ * @return array { left: string|false, right: string|false } Widget area ID
+ *               for each side that shows, false for each side that doesn't.
  */
 function nrds_get_sidebars() {
 	$show    = array(
@@ -93,15 +100,15 @@ function nrds_get_sidebars() {
 			}
 		}
 
-		foreach ( nrds_sidebar_areas() as $side => $area ) {
-			$show[ $side ] = $show[ $side ] && is_active_sidebar( $area );
+		foreach ( nrds_sidebar_areas( $context ) as $side => $area ) {
+			$show[ $side ] = ( $show[ $side ] && is_active_sidebar( $area ) ) ? $area : false;
 		}
 	}
 
 	/**
 	 * Filter which sidebars show.
 	 *
-	 * @param array       $show    { left: bool, right: bool }.
+	 * @param array       $show    { left: string|false, right: string|false }.
 	 * @param string|null $context Sidebar context.
 	 */
 	return apply_filters( 'nrds_sidebars', $show, $context );
@@ -117,12 +124,12 @@ function nrds_layout_body_class( $classes ) {
 	$classes[] = 'full' === nrds_setting( 'site_width' ) ? 'nrds-fullscreen' : 'nrds-sized';
 
 	$sidebars = nrds_get_sidebars();
-	foreach ( $sidebars as $side => $shown ) {
-		if ( $shown ) {
+	foreach ( $sidebars as $side => $area ) {
+		if ( $area ) {
 			$classes[] = 'has-' . $side . '-sidebar';
 		}
 	}
-	if ( ! in_array( true, $sidebars, true ) ) {
+	if ( ! array_filter( $sidebars ) ) {
 		$classes[] = 'no-sidebar';
 	}
 

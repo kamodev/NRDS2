@@ -70,3 +70,16 @@
 .nrds-contrast__status { grid-column: 2 / -1; color: #00a32a; font-size: 12px; }
 .nrds-contrast li.is-large .nrds-contrast__status { color: #996800; }
 .nrds-contrast li.is-low .nrds-contrast__status { color: #b32d2e; }
+
+/* Store tab */
+.nrds-store-pages { max-width: 900px; margin-top: 12px; }
+.nrds-store-pages td { vertical-align: middle; }
+.nrds-store-pages__title { color: #646970; }
+.nrds-store-pages__actions { white-space: nowrap; text-align: right; }
+.nrds-status { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; font-weight: 600; background: #f0f0f1; color: #50575e; }
+.nrds-status--published { background: #edfaef; color: #00711f; }
+.nrds-status--draft { background: #fcf9e8; color: #8a6100; }
+.nrds-status--missing { background: #fcf0f1; color: #b32d2e; }
+.nrds-store-create { margin: 16px 0 8px; }
+.nrds-store-create .description { margin-top: 8px; max-width: 900px; }
+.nrds-store-ok { color: #00711f; font-weight: 600; }

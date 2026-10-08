@@ -41,6 +41,20 @@ The footer has, from top to bottom:
 3. **Disclaimer** band (Theme Settings > Footer).
 4. **Bottom bar**: copyright line, the **Footer Bottom Bar Menu** location and the **Footer Bottom Bar** widget area.
 
+### WooCommerce store
+
+Everything below turns on when the WooCommerce plugin is active; without it the theme is unchanged.
+
+- **Theme Settings > Store** lists the pages a store needs and whether each one is set up: Shop, Cart, Checkout, My account, Terms and conditions, Privacy policy, and Refund and returns policy. **Create missing pages** makes any that are missing:
+  - Shop, Cart, Checkout, My account and Refund and returns policy come from WooCommerce's own installer, so they get the content WooCommerce expects (the Cart and Checkout blocks).
+  - Terms and conditions and Privacy policy are created as drafts with placeholder text (the privacy page uses WordPress's privacy policy template). Replace the text and publish them; the terms checkbox appears at checkout once the Terms page is published.
+  - Each page is linked to WooCommerce (WooCommerce > Settings > Advanced > Page setup) or, for privacy, to Settings > Privacy.
+- **Layout:** shop and product pages use the theme layout. Theme Settings > Layout & Sidebars gets two more rows, *Shop & product categories* (left sidebar on by default) and *Products* (full width by default). On those pages the left sidebar shows the **Shop Sidebar** widget area, which is meant for product filters and categories. Cart, checkout and account pages never show sidebars.
+- **Header:** account and cart icons next to the menu; the cart icon shows the item count and updates after add-to-cart.
+- **Styling:** product grid, product pages, notices, forms, cart and checkout (block and classic) and My Account use the theme palette and buttons (`assets/css/woocommerce.css`).
+- The theme overrides no WooCommerce templates (there is no `woocommerce/` folder); it only uses WooCommerce's hooks and CSS, so WooCommerce updates never leave theme files out of date.
+- Products per row, image cropping and the store notice are set in **Customize > WooCommerce**.
+
 ### Customization
 
 - Settings live in `inc/settings.php` (fields, defaults, color themes) and `inc/admin-settings.php` (the settings screen).
@@ -52,7 +66,7 @@ The footer has, from top to bottom:
 
 - Templates: `header.php`, `footer.php`, `index.php` (blog, archives, search), `front-page.php`, `page.php`, `single.php`, `404.php`, `comments.php`, `searchform.php`, `page-full-width.php`, `sidebar-left.php`, `sidebar-right.php`
 - Template parts: `template-parts/header/`, `template-parts/footer/`, `template-parts/content*.php`
-- PHP helpers: `inc/` (`settings.php`, `layout.php`, `template-tags.php`, `icons.php`, `admin-settings.php`)
+- PHP helpers: `inc/` (`settings.php`, `layout.php`, `template-tags.php`, `icons.php`, `admin-settings.php`) and `inc/woocommerce/` (store support, loaded only when WooCommerce is active)
 - Stylesheets are enqueued in order by `nrds_theme_scripts()` in `functions.php`; `screens.css` holds all breakpoints and loads last.
 - Scripts: `assets/js/script.js` (sticky header, mobile menu), `assets/js/admin-settings.js` (Theme Settings screen)
 - `nrds-site/` is a static HTML mockup of the design; it isn't part of the theme zip.
