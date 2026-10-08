@@ -114,7 +114,8 @@ jQuery(document).ready(function($) {
 
     // Focus trap: keep focus within the menu when it's open (mobile)
     function isMobileView() {
-        return window.matchMedia('(max-width: 768px)').matches;
+        // Matches the menu breakpoint in assets/css/screens.css
+        return window.matchMedia('(max-width: 900px)').matches;
     }
 
     function getFocusableMenuItems() {
@@ -169,5 +170,102 @@ jQuery(document).ready(function($) {
                 }
             }
         }, 10);
+    });
+
+    // Submenus: the chevron toggles added by inc/navigation.php open them as
+    // dropdowns on wide screens (hover and keyboard focus open them too, in
+    // CSS) and as collapsible sections in the mobile menu.
+    var primaryNav = $('.nrd-nav');
+
+    function setSubmenu(item, open) {
+        item.toggleClass('submenu-open', open);
+        item.children('.submenu-toggle').attr('aria-expanded', open ? 'true' : 'false');
+        if (!open) {
+            item.find('.submenu-open').each(function() { setSubmenu($(this), false); });
+        }
+    }
+
+    function closeAllSubmenus() {
+        primaryNav.find('li.submenu-open').each(function() { setSubmenu($(this), false); });
+    }
+
+    // Open a panel leftward when it would run past the right edge of the window
+    function placeSubmenu(item) {
+        var panel = item.children('.sub-menu, .children');
+        if (!panel.length || isMobileView()) return;
+        item.removeClass('opens-left');
+        if (panel[0].getBoundingClientRect().right > document.documentElement.clientWidth - 8) {
+            item.addClass('opens-left');
+        }
+    }
+
+    primaryNav.on('click', '.submenu-toggle', function(e) {
+        e.preventDefault();
+        var item = $(this).parent();
+        var open = !item.hasClass('submenu-open') || item.hasClass('submenu-dismissed');
+        item.removeClass('submenu-dismissed');
+        if (open && !isMobileView()) {
+            // One dropdown at a time on wide screens
+            item.siblings('.submenu-open').each(function() { setSubmenu($(this), false); });
+            placeSubmenu(item);
+        }
+        setSubmenu(item, open);
+    });
+
+    primaryNav.on('mouseenter focusin', '.menu-item-has-children, .page_item_has_children', function() {
+        var item = $(this);
+        placeSubmenu(item);
+        if (!isMobileView()) {
+            // A dropdown opened by its toggle closes when another item is pointed at
+            item.siblings('.submenu-open').each(function() { setSubmenu($(this), false); });
+        }
+    });
+
+    // Escape closes the open dropdown and returns focus to its toggle
+    primaryNav.on('keydown', function(e) {
+        if ((e.key !== 'Escape' && e.keyCode !== 27) || isMobileView()) return;
+        var item = $(e.target).closest('.menu-item-has-children, .page_item_has_children');
+        if (!item.length) return;
+        setSubmenu(item, false);
+        var toggle = item.children('.submenu-toggle');
+        // Move focus out of the panel so :focus-within lets it close
+        (toggle.length ? toggle : item.children('a')).trigger('focus');
+        item.addClass('submenu-dismissed');
+    });
+
+    // Leaving an item clears the Escape dismissal
+    primaryNav.on('mouseleave focusout', '.submenu-dismissed', function(e) {
+        if (!this.contains(e.relatedTarget)) {
+            $(this).removeClass('submenu-dismissed');
+        }
+    });
+
+    // A click outside the menu closes any open dropdown
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.nrd-nav').length) {
+            closeAllSubmenus();
+        }
+    });
+
+    // Decide every panel's direction up front, parents before children, so a
+    // closed panel near the right edge never widens the page
+    function placeAllSubmenus() {
+        primaryNav.find('.menu-item-has-children, .page_item_has_children').each(function() {
+            placeSubmenu($(this));
+        });
+    }
+    placeAllSubmenus();
+    $(window).on('load', placeAllSubmenus);
+
+    // Switching between the phone and wide layouts starts with submenus closed
+    var wasMobile = isMobileView();
+    var resizeTimer = null;
+    $(window).on('resize', function() {
+        if (isMobileView() !== wasMobile) {
+            wasMobile = isMobileView();
+            closeAllSubmenus();
+        }
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(placeAllSubmenus, 150);
     });
 });
