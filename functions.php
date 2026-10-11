@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'NRDS_VERSION', '3.3.0' );
+define( 'NRDS_VERSION', '3.3.1' );
 define( 'NRDS_DIR', get_template_directory() );
 define( 'NRDS_URI', get_template_directory_uri() );
 
@@ -21,6 +21,9 @@ require NRDS_DIR . '/inc/navigation.php';
 
 // WooCommerce store support; the file returns early when WooCommerce isn't active.
 require NRDS_DIR . '/inc/woocommerce/woocommerce.php';
+
+// Sensei LMS adjustments.
+require NRDS_DIR . '/inc/sensei-lms.php';
 
 if ( is_admin() ) {
 	require NRDS_DIR . '/inc/admin-settings.php';
