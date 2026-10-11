@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'NRDS_VERSION', '3.3.1' );
+define( 'NRDS_VERSION', '3.3.2' );
 define( 'NRDS_DIR', get_template_directory() );
 define( 'NRDS_URI', get_template_directory_uri() );
 
