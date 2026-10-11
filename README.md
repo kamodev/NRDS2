@@ -74,7 +74,7 @@ Everything below turns on when the WooCommerce plugin is active; without it the 
 
 - Templates: `header.php`, `footer.php`, `index.php` (blog, archives, search), `front-page.php`, `page.php`, `single.php`, `404.php`, `comments.php`, `searchform.php`, `page-full-width.php`, `sidebar-left.php`, `sidebar-right.php`
 - Template parts: `template-parts/header/`, `template-parts/footer/`, `template-parts/content*.php`
-- PHP helpers: `inc/` (`settings.php`, `layout.php`, `template-tags.php`, `navigation.php`, `icons.php`, `admin-settings.php`) and `inc/woocommerce/` (store support, loaded only when WooCommerce is active), plus `inc/sensei-lms.php` (Sensei LMS adjustments: hides the "There are no published lessons in this course yet." notice)
+- PHP helpers: `inc/` (`settings.php`, `layout.php`, `template-tags.php`, `navigation.php`, `icons.php`, `admin-settings.php`) and `inc/woocommerce/` (store support, loaded only when WooCommerce is active), plus `inc/sensei-lms.php` (Sensei LMS adjustments: hides the "There are no published lessons in this course yet." notice and the "Please contact the course administrator to sign up for this course." self-enrollment notice)
 - Stylesheets are enqueued in order by `nrds_theme_scripts()` in `functions.php`; `screens.css` holds all breakpoints and loads last.
 - Scripts: `assets/js/script.js` (sticky header, mobile menu, dropdown submenus), `assets/js/admin-settings.js` (Theme Settings screen)
 - `nrds-site/` is a static HTML mockup of the design; it isn't part of the theme zip.
